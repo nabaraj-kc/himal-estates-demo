@@ -73,40 +73,42 @@ export function Navbar() {
           : 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border-b border-slate-100 dark:border-slate-800'
       }`}
     >
-      {/* Top micro bar for contact info & admin link */}
+      {/* Top micro bar for contact info & inquiry hotline */}
       <div className="bg-slate-900 text-slate-300 text-xs py-1.5 px-4 hidden sm:block">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 text-teal-400 font-medium">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              {isNepali ? 'प्रत्येक सूची हाम्रो टोलीद्वारा प्रमाणित' : 'Verified Nepal Property & Business Deals'}
+              {isNepali ? 'प्रत्येक सूची स्थलगत र कानुनी रूपमा प्रमाणित' : 'Every Listing Verified • Kathmandu, Lalitpur, Pokhara'}
             </span>
             <a
               href={`tel:${brand.phone}`}
               className="hover:text-white transition-colors flex items-center gap-1"
             >
               <Phone className="w-3 h-3 text-teal-400" />
-              <span>{brand.phone}</span>
+              <span>Tel: {brand.phone}</span>
+            </a>
+            <span className="text-slate-600">|</span>
+            <a
+              href={`tel:${brand.mobile}`}
+              className="hover:text-white transition-colors flex items-center gap-1"
+            >
+              <span>Mob: {brand.mobile}</span>
             </a>
           </div>
 
           <div className="flex items-center gap-4">
+            <span className="text-slate-400 text-[11px]">Kathmandu HQ: {brand.address}</span>
+            <span className="text-slate-600">|</span>
             <a
               href={`https://wa.me/${brand.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 font-medium"
             >
-              <span>WhatsApp Us</span>
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>WhatsApp Helpline</span>
             </a>
-            <span className="text-slate-600">|</span>
-            <Link
-              href="/admin"
-              className="flex items-center gap-1 text-slate-300 hover:text-white transition-colors bg-slate-800 hover:bg-slate-700 px-2.5 py-0.5 rounded text-[11px] font-medium"
-            >
-              <ShieldCheck className="w-3.5 h-3.5 text-orange-400" />
-              <span>Middleman Admin</span>
-            </Link>
           </div>
         </div>
       </div>
@@ -198,13 +200,13 @@ export function Navbar() {
               <span>{isNepali ? 'सम्पत्ति पोस्ट गर्नुहोस्' : 'List Your Property (Free)'}</span>
             </Link>
 
-            <Link
-              href="/admin"
+            <a
+              href={`tel:${brand.phone}`}
               className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-medium"
             >
-              <ShieldCheck className="w-4 h-4 text-orange-600" />
-              <span>Admin Panel</span>
-            </Link>
+              <Phone className="w-4 h-4 text-teal-600" />
+              <span>Call Helpline</span>
+            </a>
 
             <a
               href={`https://wa.me/${brand.whatsapp}`}

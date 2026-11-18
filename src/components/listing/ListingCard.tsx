@@ -2,23 +2,23 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Listing } from '@/types';
-import { formatNPR, formatNPRShort } from '@/lib/utils';
+import { formatNPR } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { getFavoriteIds, toggleFavoriteId } from '@/lib/storage';
 import { brand } from '@/config/brand';
 import {
   MapPin,
   Bed,
-  Bath,
   Maximize2,
   Heart,
   ShieldCheck,
   Flame,
   Star,
-  MessageSquare,
-  ArrowRight,
+  MessageCircle,
+  Compass,
+  Milestone,
 } from 'lucide-react';
 
 interface ListingCardProps {
@@ -27,6 +27,7 @@ interface ListingCardProps {
 }
 
 export function ListingCard({ listing, priority = false }: ListingCardProps) {
+  const router = useRouter();
   const { isNepali } = useLanguage();
   const [isSaved, setIsSaved] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -51,6 +52,15 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
     setIsSaved(newState);
   };
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    // Prevent routing if user clicked an interactive child (a, button)
+    if (target.closest('button, a')) {
+      return;
+    }
+    router.push(`/listings/${listing.slug || listing.id}`);
+  };
+
   const primaryImage =
     listing.images && listing.images.length > 0
       ? listing.images[0].url
@@ -62,11 +72,11 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
     if (listing.priceType === 'perMonth') {
       return (
         <div className="flex items-baseline gap-1">
-          <span className="font-display font-bold text-lg sm:text-xl text-teal-800 dark:text-teal-400">
+          <span className="font-display font-bold text-lg text-slate-900 dark:text-white">
             {priceText}
           </span>
           <span className="text-xs text-slate-500 font-normal">
-            {isNepali ? '/महिना' : '/month'}
+            {isNepali ? '/महिना' : '/mo'}
           </span>
         </div>
       );
@@ -74,7 +84,7 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
     if (listing.priceType === 'perAana') {
       return (
         <div className="flex items-baseline gap-1">
-          <span className="font-display font-bold text-lg sm:text-xl text-teal-800 dark:text-teal-400">
+          <span className="font-display font-bold text-lg text-slate-900 dark:text-white">
             {priceText}
           </span>
           <span className="text-xs text-slate-500 font-normal">
@@ -84,7 +94,7 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
       );
     }
     return (
-      <span className="font-display font-bold text-lg sm:text-xl text-teal-800 dark:text-teal-400">
+      <span className="font-display font-bold text-lg text-slate-900 dark:text-white">
         {priceText}
       </span>
     );
@@ -97,19 +107,35 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
     )}). Can you share details or schedule a visit?`
   )}`;
 
+  // Facing translation
+  const facingText = listing.facing
+    ? isNepali
+      ? listing.facing === 'east'
+        ? 'पूर्व मोहडा'
+        : listing.facing === 'west'
+        ? 'पश्चिम मोहडा'
+        : listing.facing === 'north'
+        ? 'उत्तर मोहडा'
+        : listing.facing === 'south'
+        ? 'दक्षिण मोहडा'
+        : `${listing.facing} मोहडा`
+      : `${listing.facing.charAt(0).toUpperCase() + listing.facing.slice(1)}-facing`
+    : null;
+
   return (
-    <div className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-none hover:border-teal-600/40 transition-all duration-300 flex flex-col h-full">
+    <article
+      onClick={handleCardClick}
+      className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-none hover:border-teal-700/50 transition-all duration-300 flex flex-col h-full cursor-pointer"
+    >
       {/* Top Media Container */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
-        <Link href={`/listings/${listing.slug || listing.id}`} className="block w-full h-full">
-          <img
-            src={imgError ? 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80' : primaryImage}
-            alt={listing.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            onError={() => setImgError(true)}
-            loading={priority ? 'eager' : 'lazy'}
-          />
-        </Link>
+        <img
+          src={imgError ? 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80' : primaryImage}
+          alt={listing.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          onError={() => setImgError(true)}
+          loading={priority ? 'eager' : 'lazy'}
+        />
 
         {/* Top Floating Badges */}
         <div className="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-10">
@@ -121,7 +147,7 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
           )}
 
           {listing.featured && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-teal-800/95 text-teal-100 text-[11px] font-bold shadow-sm backdrop-blur-sm">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-teal-900/95 text-teal-100 text-[11px] font-bold shadow-sm backdrop-blur-sm">
               <Star className="w-3 h-3 text-amber-300 fill-amber-300" />
               <span>{isNepali ? 'विशेष' : 'Featured'}</span>
             </span>
@@ -163,53 +189,58 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
       {/* Content Container */}
       <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between gap-3">
         <div>
-          {/* Price */}
-          <div className="mb-1">{renderPriceLabel()}</div>
-
           {/* Title */}
-          <Link href={`/listings/${listing.slug || listing.id}`}>
-            <h3 className="font-semibold text-slate-900 dark:text-white text-base sm:text-lg line-clamp-1 group-hover:text-teal-700 dark:group-hover:text-teal-400 transition-colors">
-              {isNepali && listing.titleNe ? listing.titleNe : listing.title}
-            </h3>
-          </Link>
+          <h3 className="font-semibold text-slate-900 dark:text-white text-base sm:text-lg line-clamp-1 group-hover:text-teal-800 dark:group-hover:text-teal-400 transition-colors">
+            {isNepali && listing.titleNe ? listing.titleNe : listing.title}
+          </h3>
 
           {/* Location */}
           <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-1.5">
-            <MapPin className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400 flex-shrink-0" />
+            <MapPin className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400 flex-shrink-0" />
             <span className="line-clamp-1">
               {listing.location.tole ? `${listing.location.tole}, ` : ''}
               {listing.location.district || listing.location.city}
+              {listing.location.landmark ? ` • ${listing.location.landmark}` : ''}
             </span>
           </div>
         </div>
 
-        {/* Property Specs Pill Bar */}
-        <div className="pt-2 border-t border-slate-100 dark:border-slate-800 grid grid-cols-3 gap-2 text-xs text-slate-600 dark:text-slate-400">
+        {/* Property Specs Pill Bar (Bedrooms, Area, Road, Facing) */}
+        <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-600 dark:text-slate-400 gap-2">
           {listing.bedrooms !== undefined ? (
-            <div className="flex items-center gap-1.5" title="Bedrooms">
+            <div className="flex items-center gap-1" title="Bedrooms">
               <Bed className="w-3.5 h-3.5 text-slate-400" />
-              <span>{listing.bedrooms} Beds</span>
+              <span>{listing.bedrooms} {isNepali ? 'कोठा' : 'Beds'}</span>
             </div>
           ) : (
-            <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+            <div className="flex items-center gap-1" title="Area">
+              <Maximize2 className="w-3.5 h-3.5 text-slate-400" />
+              <span className="truncate">
+                {listing.area} {listing.areaUnit}
+              </span>
+            </div>
+          )}
+
+          {listing.roadWidth ? (
+            <div className="flex items-center gap-1" title="Road Width">
+              <Milestone className="w-3.5 h-3.5 text-slate-400" />
+              <span>
+                {listing.roadWidth} ft {listing.roadType || ''}
+              </span>
+            </div>
+          ) : facingText ? (
+            <div className="flex items-center gap-1" title="Mohada">
+              <Compass className="w-3.5 h-3.5 text-slate-400" />
+              <span>{facingText}</span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-600"></span>
               <span className="capitalize">{listing.category}</span>
             </div>
           )}
 
-          {listing.bathrooms !== undefined ? (
-            <div className="flex items-center gap-1.5" title="Bathrooms">
-              <Bath className="w-3.5 h-3.5 text-slate-400" />
-              <span>{listing.bathrooms} Baths</span>
-            </div>
-          ) : (
-            <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
-              <span>{listing.condition || 'Verified'}</span>
-            </div>
-          )}
-
-          <div className="flex items-center gap-1.5" title="Area">
+          <div className="flex items-center gap-1" title="Area">
             <Maximize2 className="w-3.5 h-3.5 text-slate-400" />
             <span className="truncate">
               {listing.area} {listing.areaUnit}
@@ -217,28 +248,23 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
           </div>
         </div>
 
-        {/* Quick Actions Footer */}
-        <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+        {/* Single Clean Bottom Row: Price on Left, Single Clean WhatsApp Icon Button on Right */}
+        <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3">
+          <div className="min-w-0">{renderPriceLabel()}</div>
+
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 text-xs font-medium transition-colors"
+            className="w-9 h-9 rounded-full bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white flex items-center justify-center shadow-sm hover:shadow transition-all duration-200 flex-shrink-0"
+            title={isNepali ? 'ह्वाट्सएपमा सम्पर्क गर्नुहोस्' : 'Instant WhatsApp Inquiry'}
+            aria-label="WhatsApp Inquiry"
           >
-            <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
-            <span>WhatsApp</span>
+            <MessageCircle className="w-4 h-4 fill-emerald-600 stroke-white" />
           </a>
-
-          <Link
-            href={`/listings/${listing.slug || listing.id}`}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-teal-700 dark:text-teal-400 hover:text-teal-800 group/link"
-          >
-            <span>{isNepali ? 'विवरण हेर्नुहोस्' : 'Details'}</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" />
-          </Link>
         </div>
       </div>
-    </div>
+    </article>
   );
 }

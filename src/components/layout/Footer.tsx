@@ -214,20 +214,15 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Quick & Middleman Links */}
+          {/* Quick Links & Broker Login */}
           <div>
             <h3 className="text-white font-semibold text-sm mb-3">
-              {isNepali ? 'द्रुत लिङ्कहरू' : 'Platform & Admin'}
+              {isNepali ? 'द्रुत लिङ्कहरू' : 'Agency & Services'}
             </h3>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
                 <Link href="/list-property" className="text-teal-400 font-medium hover:underline">
-                  {isNepali ? 'आफ्नो सम्पत्ति निःशुल्क दर्ता गर्नुहोस्' : 'List Property (Owner Flow)'}
-                </Link>
-              </li>
-              <li>
-                <Link href="/admin" className="text-orange-400 font-medium hover:underline">
-                  {isNepali ? 'प्रशासन प्यानल (Middleman CRM)' : 'Admin Portal & CRM'}
+                  {isNepali ? 'आफ्नो सम्पत्ति निःशुल्क दर्ता गर्नुहोस्' : 'List Property (Free Submission)'}
                 </Link>
               </li>
               <li>
@@ -245,17 +240,22 @@ export function Footer() {
                   {isNepali ? 'सम्पर्क तथा सोधपुछ' : 'Contact & Support'}
                 </Link>
               </li>
+              <li className="pt-2 border-t border-slate-800/80">
+                <Link href="/admin" className="text-slate-500 hover:text-orange-400 transition-colors flex items-center gap-1">
+                  <span>{isNepali ? 'एजेन्सी पोर्टल लगइन' : 'Broker / Staff Portal'}</span>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="border-t border-slate-800/80 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© {brand.year} {brand.name}. {isNepali ? 'सर्वाधिकार सुरक्षित।' : 'All rights reserved.'}</p>
+          <p>© 2026 {brand.name}. {isNepali ? 'सर्वाधिकार सुरक्षित।' : 'All rights reserved.'}</p>
           <div className="flex items-center gap-6">
             <Link href="/terms" className="hover:text-slate-400 transition-colors">Terms of Service</Link>
             <Link href="/privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
-            <Link href="/admin" className="hover:text-orange-400 transition-colors">Broker Portal</Link>
+            <Link href="/admin" className="text-slate-600 hover:text-slate-400 transition-colors">Staff Login</Link>
           </div>
         </div>
       </div>

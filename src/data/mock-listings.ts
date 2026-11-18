@@ -75,8 +75,8 @@ export const mockListings: Listing[] = [
   // ----------------------------------------------------
   {
     id: 'list-001',
-    title: 'Luxury 3BHK Furnished Apartment with Himalayan View',
-    titleNe: 'हिमाल दृश्यसहितको ३ बीएचके सुसज्जित अपार्टमेन्ट',
+    title: 'Furnished 3BHK Apartment in Jhamsikhel (20 ft Pitched Road, 1 Car Parking)',
+    titleNe: 'झम्सिखेलमा २० फिट पिच बाटो र कार पार्किङसहितको ३ बीएचके अपार्टमेन्ट',
     slug: 'luxury-3bhk-furnished-apartment-jhamsikhel',
     type: 'rent',
     category: 'apartment',
@@ -107,9 +107,9 @@ export const mockListings: Listing[] = [
     facing: 'north',
     condition: 'excellent',
     builtYear: 2022,
-    description: 'Impeccably designed 3-bedroom apartment on the 6th floor in the prime expat diplomatic zone of Jhamsikhel. Features floor-to-ceiling windows with unobstructed views of the Langtang Himalayan range, high-end modular Italian kitchen, solid hardwood flooring, 24/7 solar water heating, and high-speed fiber internet.',
-    descriptionNe: 'झम्सिखेलको प्रिमियम कूटनीतिक क्षेत्रमा छैठौं तलामा अवस्थित आकर्षक ३ बीएचके अपार्टमेन्ट। लाम्टाङ हिमालको सुन्दर दृश्य, इटालियन मोड्युलर किचन, २४ घण्टा तातो पानी र सुरक्षा सुविधा उपलब्ध।',
-    highlights: ['Breathtaking North Himalayan View', '24/7 Generator Backup & Elevator', 'Expat-friendly secure compound', 'Underground car parking included'],
+    description: 'Well-appointed 3-bedroom apartment on the 6th floor in Jhamsikhel, 200m from St. Marys School. Features 24 ft pitched access road, modular kitchen, parquet flooring, 24/7 solar backup, and 1 dedicated basement car parking bay.',
+    descriptionNe: 'झम्सिखेल सेन्ट मेरीज स्कुल नजिकै २४ फिट पिच बाटो र १ कार पार्किङसहितको ३ बीएचके अपार्टमेन्ट। २४ घण्टा पानी, लिफ्ट र सुरक्षा सुविधा उपलब्ध।',
+    highlights: ['24 ft Pitched Access Road', '1 Dedicated Underground Car Parking', '200m from St. Marys School', '24/7 Generator Backup & Elevator'],
     images: [
       { id: 'img-1-1', url: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80', alt: 'Living Room with balcony', isPrimary: true, order: 1 },
       { id: 'img-1-2', url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80', alt: 'Master Bedroom', isPrimary: false, order: 2 },
@@ -238,8 +238,8 @@ export const mockListings: Listing[] = [
   },
   {
     id: 'list-004',
-    title: 'Penthouse Apartment with Private Terrace in Sanepa',
-    titleNe: 'सानेपामा निजी टेरेससहितको लक्जरी पेन्टहाउस',
+    title: '4BHK Penthouse in Sanepa Heights (26 ft Road, 2 Reserved Parking)',
+    titleNe: 'सानेपा हाइटमा २६ फिट पिच बाटो र २ कार पार्किङसहितको ४ बीएचके पेन्टहाउस',
     slug: 'penthouse-apartment-sanepa',
     type: 'rent',
     category: 'apartment',
@@ -292,8 +292,8 @@ export const mockListings: Listing[] = [
   },
   {
     id: 'list-005',
-    title: 'Peaceful 2BHK Flat with Lake View in Pokhara Lakeside',
-    titleNe: 'पोखरा लेकसाइडमा फेवातालको दृश्य देखिने २ बीएचके फ्ल्याट',
+    title: 'Lake-Facing 2BHK Flat in Pokhara Lakeside (West-Facing, 20 ft Road)',
+    titleNe: 'पोखरा लेकसाइडमा २० फिटे बाटो भएको पश्चिम मोहडाको २ बीएचके फ्ल्याट',
     slug: 'peaceful-2bhk-flat-pokhara-lakeside',
     type: 'rent',
     category: 'apartment',
@@ -349,8 +349,8 @@ export const mockListings: Listing[] = [
   // ----------------------------------------------------
   {
     id: 'list-006',
-    title: 'Modern 2.5 Storey Luxury Bungalow in Sanepa',
-    titleNe: 'सानेपामा साढे २ तलाको अत्याधुनिक लक्जरी बंगला बिक्रीमा',
+    title: '2.5 Storey Bungalow on 12 Aana in Sanepa (South-Facing, 20 ft Road)',
+    titleNe: 'सानेपामा २० फिट पिच बाटो र दक्षिण मोहडा भएको १२ आनाको साढे २ तले घर',
     slug: 'modern-luxury-bungalow-sanepa',
     type: 'sale',
     category: 'house',
@@ -405,8 +405,8 @@ export const mockListings: Listing[] = [
   },
   {
     id: 'list-007',
-    title: 'Brand New 2.5 Storey House in Budhanilkantha',
-    titleNe: 'बुढानीलकण्ठमा नयाँ साढे २ तलाको आकर्षक घर बिक्रीमा',
+    title: 'Brand New 2.5 Storey House on 5.5 Aana in Budhanilkantha (East-Facing, 16 ft Road)',
+    titleNe: 'बुढानीलकण्ठमा १६ फिट पिच बाटो र पूर्व मोहडा भएको ५.५ आनाको नयाँ घर',
     slug: 'brand-new-house-budhanilkantha',
     type: 'sale',
     category: 'house',
@@ -460,8 +460,8 @@ export const mockListings: Listing[] = [
   },
   {
     id: 'list-008',
-    title: 'Solid Residential House for Sale in Imadol, Lalitpur',
-    titleNe: 'इमाडोल ललितपुरमा बलियो आवासीय घर बिक्रीमा',
+    title: '2.5 Storey Pillar House on 4 Aana in Imadol (South-Facing, 14 ft Pitched Road)',
+    titleNe: 'इमाडोल ललितपुरमा १४ फिट पिच बाटो र ४ आनामा बनेको साढे २ तलाको पक्की घर',
     slug: 'residential-house-imadol-lalitpur',
     type: 'sale',
     category: 'house',
@@ -514,8 +514,8 @@ export const mockListings: Listing[] = [
   },
   {
     id: 'list-009',
-    title: 'Scenic Hillside Villa Overlooking Pokhara Valley',
-    titleNe: 'पोखरा उपत्यका देखिने रमणीय डाँडामा भिल्ला बिक्रीमा',
+    title: 'Scenic 2-Storey Villa on 14 Aana in Sarangkot Road Pokhara (20 ft Road, 3 Car Parking)',
+    titleNe: 'पोखरा सराङकोट रोडमा २० फिट बाटो र १४ आनामा बनेको २ तले भिल्ला',
     slug: 'scenic-hillside-villa-pokhara',
     type: 'sale',
     category: 'house',
@@ -573,8 +573,8 @@ export const mockListings: Listing[] = [
   // ----------------------------------------------------
   {
     id: 'list-010',
-    title: 'Prime 4 Aana Residential Plot in Imadol Tikathali',
-    titleNe: 'इमाडोल टिकाथलीमा ४ आना आकर्षक घडेरी बिक्रीमा',
+    title: '4 Aana Residential Plot in Tikathali Imadol (East-Facing, 38 ft Mohada, 16 ft Road)',
+    titleNe: 'टिकाथली इमाडोलमा ३८ फिट मोहडा र १६ फिट बाटो भएको ४ आना घडेरी',
     slug: 'prime-4-aana-residential-plot-imadol',
     type: 'sale',
     category: 'land',
@@ -619,8 +619,8 @@ export const mockListings: Listing[] = [
   },
   {
     id: 'list-011',
-    title: '1 Ropani High-Value Land in Budhanilkantha VIP Zone',
-    titleNe: 'बुढानीलकण्ठ भीआईपी क्षेत्रमा १ रोपनी जग्गा बिक्रीमा',
+    title: '1 Ropani Land in Budhanilkantha Near Park Village (South-Facing, 20 ft Pitched Road)',
+    titleNe: 'बुढानीलकण्ठ पार्क भिलेज नजिकै २० फिट पिच बाटो भएको १ रोपनी जग्गा',
     slug: '1-ropani-land-budhanilkantha',
     type: 'sale',
     category: 'land',
@@ -665,8 +665,8 @@ export const mockListings: Listing[] = [
   },
   {
     id: 'list-012',
-    title: '12 Aana Commercial Land on Ring Road in Balkumari',
-    titleNe: 'बालकुमारी चक्रपथ नजिकै १२ आना व्यावसायिक जग्गा',
+    title: '12 Aana Commercial Land at Balkumari Bridge (32 ft Access Road, Near Ring Road)',
+    titleNe: 'बालकुमारी पुल नजिकै ३२ फिटे बाटोमा १२ आना व्यावसायिक जग्गा',
     slug: '12-aana-commercial-land-balkumari',
     type: 'sale',
     category: 'land',
@@ -1020,8 +1020,8 @@ export const mockListings: Listing[] = [
   // ----------------------------------------------------
   {
     id: 'list-019',
-    title: 'Charming 3BHK Traditional Newari House in Patan Heritage Area',
-    titleNe: 'पाटन दरबार क्षेत्रमा ३ बीएचके नेवारी शैलीको घर भाडामा',
+    title: 'Restored 3BHK Newari House in Patan Swotha (Near Durbar Square, 12 ft Stone Paved)',
+    titleNe: 'पाटन स्वोथामा १२ फिट ढुंगा छापेको बाटो भएको ३ बीएचके परम्परागत घर',
     slug: 'traditional-newari-house-patan',
     type: 'rent',
     category: 'house',
@@ -1046,8 +1046,8 @@ export const mockListings: Listing[] = [
   },
   {
     id: 'list-020',
-    title: '5 Aana Hilltop Land Plot in Pokhara Sarangkot Road',
-    titleNe: 'पोखरा सराङकोट रोडमा ५ आना घडेरी बिक्रीमा',
+    title: '5 Aana Land Plot in Sarangkot Road Pokhara (North-Facing, 16 ft Pitched Road)',
+    titleNe: 'पोखरा सराङकोट रोडमा १६ फिट पिच बाटो भएको ५ आना घडेरी',
     slug: '5-aana-hilltop-land-pokhara',
     type: 'sale',
     category: 'land',
@@ -1177,8 +1177,8 @@ export const mockListings: Listing[] = [
   },
   {
     id: 'list-025',
-    title: 'Brand New 3BHK Apartment in Classic Tower Hattiban',
-    titleNe: 'क्लासिक टावर हात्तीवनमा नयाँ ३ बीएचके अपार्टमेन्ट',
+    title: 'Brand New 3BHK Apartment at Hattiban (7th Floor, East-Facing, 1 Car Parking)',
+    titleNe: 'हात्तीवन क्लासिक टावरमा पूर्व फर्केको ३ बीएचके अपार्टमेन्ट (७ औं तला)',
     slug: 'classic-tower-hattiban-apartment',
     type: 'sale',
     category: 'apartment',
@@ -1203,8 +1203,8 @@ export const mockListings: Listing[] = [
   },
   {
     id: 'list-026',
-    title: '3 Aana 2 Paisa House in Lokanthali Bhaktapur',
-    titleNe: 'लोकन्थली भक्तपुरमा ३ आना २ पैसामा बनेको घर',
+    title: '2.5 Storey House on 3 Aana 2 Paisa in Lokanthali (13 ft Pitched Road, 1 Car Parking)',
+    titleNe: 'लोकन्थली भक्तपुरमा १३ फिट पिच बाटो र १ कार पार्किङसहितको साढे २ तले घर',
     slug: 'house-lokanthali-bhaktapur',
     type: 'sale',
     category: 'house',
@@ -1334,8 +1334,8 @@ export const mockListings: Listing[] = [
   },
   {
     id: 'list-031',
-    title: 'Peaceful 2BHK Garden Apartment in Sanepa Expat Colony',
-    titleNe: 'सानेपामा बगैंचासहितको २ बीएचके अपार्टमेन्ट भाडामा',
+    title: 'Ground Floor 2BHK Flat with Lawn in Sanepa (24 ft Road, 1 Car Parking)',
+    titleNe: 'सानेपामा २४ फिट पिच बाटो र निजी लन भएको २ बीएचके भुइँतला फ्ल्याट',
     slug: 'garden-apartment-sanepa',
     type: 'rent',
     category: 'apartment',
@@ -1360,8 +1360,8 @@ export const mockListings: Listing[] = [
   },
   {
     id: 'list-032',
-    title: '4 Aana Commercial Plot on 6-Lane Highway in Suryabinayak Bhaktapur',
-    titleNe: 'सूर्यविनायक भक्तपुर ६-लेन सडक छेउमा ४ आना घडेरी',
+    title: '4 Aana Commercial Plot at Suryabinayak Bhaktapur (Fronting 6-Lane Arniko Highway)',
+    titleNe: 'सूर्यविनायक भक्तपुरमा ६-लेन अरनिको राजमार्गसँग जोडिएको ४ आना घडेरी',
     slug: 'highway-plot-suryabinayak-bhaktapur',
     type: 'sale',
     category: 'land',

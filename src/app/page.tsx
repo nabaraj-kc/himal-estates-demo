@@ -33,7 +33,7 @@ export default function HomePage() {
         {/* 5. How It Works (3 Steps for Verified Closing) */}
         <HowItWorks />
 
-        {/* 6. Why Himal Estates Beats Social Media Alone */}
+        {/* 6. Buyer-Focused Due Diligence & Nepali Real Estate Trust Signals */}
         <TrustSection />
 
         {/* 7. List Your Property Call To Action */}
