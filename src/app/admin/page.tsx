@@ -336,20 +336,20 @@ export default function AdminPage() {
           </div>
 
           {/* Demo Hint Banner with 1-Click Fill */}
-          <div className="mb-6 p-4 rounded-2xl bg-teal-950/80 border border-teal-800/80 text-xs text-teal-200 space-y-2">
-            <div className="font-bold text-teal-300 flex items-center justify-between">
+          <div className="mb-6 p-4 rounded-2xl bg-zinc-900/80 border border-zinc-700/80 text-xs text-zinc-300 space-y-2">
+            <div className="font-bold text-zinc-200 flex items-center justify-between">
               <span>Demo Presentation Account</span>
-              <span className="px-2 py-0.5 rounded bg-teal-900 text-[10px] text-teal-200">Ready</span>
+              <span className="px-2 py-0.5 rounded bg-zinc-800 text-[10px] text-zinc-300">Ready</span>
             </div>
             <p className="text-slate-300">
-              Email: <code className="bg-slate-900 px-1 py-0.5 rounded text-teal-300">{brand.adminEmail}</code>
+              Email: <code className="bg-slate-900 px-1 py-0.5 rounded text-zinc-200">{brand.adminEmail}</code>
               <br />
-              Password: <code className="bg-slate-900 px-1 py-0.5 rounded text-teal-300">{brand.adminPassword}</code>
+              Password: <code className="bg-slate-900 px-1 py-0.5 rounded text-zinc-200">{brand.adminPassword}</code>
             </p>
             <button
               type="button"
               onClick={handle1ClickLogin}
-              className="w-full mt-2 py-2 px-3 rounded-xl bg-teal-700 hover:bg-teal-600 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+              className="w-full mt-2 py-2 px-3 rounded-xl bg-white hover:bg-zinc-200 text-black font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm"
             >
               <span>1-Click Sign In As Admin</span>
               <ChevronRight className="w-4 h-4" />
@@ -372,7 +372,7 @@ export default function AdminPage() {
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
                 placeholder="admin@himalestates.com"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-white text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-white text-xs focus:ring-2 focus:ring-zinc-400 focus:outline-none"
               />
             </div>
 
@@ -385,13 +385,13 @@ export default function AdminPage() {
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-white text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-white text-xs focus:ring-2 focus:ring-zinc-400 focus:outline-none"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-semibold text-xs transition-colors shadow-md"
+              className="w-full py-3 rounded-xl bg-white hover:bg-zinc-200 text-black font-semibold text-xs transition-colors shadow-md"
             >
               Sign In to Command Center
             </button>
@@ -417,7 +417,7 @@ export default function AdminPage() {
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
       {/* Toast Banner */}
       {toastMsg && (
-        <div className="fixed top-4 right-4 z-50 bg-teal-600 text-white px-4 py-2.5 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2 animate-in slide-in-from-top-3">
+        <div className="fixed top-4 right-4 z-50 bg-white text-black px-4 py-2.5 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2 animate-in slide-in-from-top-3">
           <CheckCircle2 className="w-4 h-4 text-white" />
           <span>{toastMsg}</span>
         </div>
@@ -448,7 +448,7 @@ export default function AdminPage() {
             <Link
               href="/"
               target="_blank"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-950 hover:bg-teal-900 text-teal-300 text-xs font-semibold border border-teal-800/80 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-200 text-xs font-semibold border border-zinc-700/80 transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Public Site</span>
@@ -480,7 +480,7 @@ export default function AdminPage() {
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
                 activeTab === tab.id
-                  ? 'bg-teal-700 text-white shadow-sm'
+                  ? 'bg-white text-black shadow-sm'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
               }`}
             >
@@ -504,7 +504,7 @@ export default function AdminPage() {
         {activeTab === 'dashboard' && (
           <div className="space-y-8 animate-in fade-in">
             {/* Top Middleman Mission Banner */}
-            <div className="p-6 rounded-3xl bg-gradient-to-r from-teal-950/90 via-slate-900 to-slate-900 border border-teal-800/50 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="p-6 rounded-3xl bg-zinc-900 border border-zinc-700/50 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div>
                 <h2 className="font-display font-bold text-xl text-white">
                   Welcome to Your Brokerage Operation
@@ -516,7 +516,7 @@ export default function AdminPage() {
               <div className="flex items-center gap-2.5">
                 <button
                   onClick={() => setAddListingModalOpen(true)}
-                  className="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-sm"
+                  className="px-4 py-2 rounded-xl bg-white hover:bg-zinc-200 text-black font-semibold text-xs flex items-center gap-1.5 shadow-sm"
                 >
                   <Plus className="w-4 h-4" />
                   <span>New Listing</span>
@@ -536,12 +536,12 @@ export default function AdminPage() {
               <div className="p-5 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-2">
                 <div className="flex items-center justify-between text-slate-400 text-xs">
                   <span>Active Listings</span>
-                  <Building2 className="w-4 h-4 text-teal-400" />
+                  <Building2 className="w-4 h-4 text-zinc-100" />
                 </div>
                 <div className="font-display font-extrabold text-2xl sm:text-3xl text-white">
                   {listings.filter((l) => l.status === 'active').length}
                 </div>
-                <div className="text-[11px] text-teal-400 font-medium">
+                <div className="text-[11px] text-zinc-100 font-medium">
                   {listings.filter((l) => l.featured).length} Featured • {listings.filter((l) => l.hotDeal).length} Hot Deals
                 </div>
               </div>
@@ -575,12 +575,12 @@ export default function AdminPage() {
               <div className="p-5 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-2">
                 <div className="flex items-center justify-between text-slate-400 text-xs">
                   <span>Commission Earned</span>
-                  <BadgeDollarSign className="w-4 h-4 text-emerald-400" />
+                  <BadgeDollarSign className="w-4 h-4 text-white" />
                 </div>
-                <div className="font-display font-extrabold text-2xl sm:text-3xl text-emerald-400">
+                <div className="font-display font-extrabold text-2xl sm:text-3xl text-white">
                   {commSummary ? formatNPR(commSummary.totalCommissionEarned) : 'NPR 6,52,500'}
                 </div>
-                <div className="text-[11px] text-emerald-400 font-medium">
+                <div className="text-[11px] text-white font-medium">
                   {commSummary?.closedDealsCount || 3} Closed Transactions
                 </div>
               </div>
@@ -596,9 +596,9 @@ export default function AdminPage() {
                 </h3>
                 <div className="space-y-2.5 text-xs">
                   {[
-                    { label: 'Flats & Apartments', count: listings.filter((l) => l.category === 'apartment' || l.category === 'room').length, color: 'bg-teal-500' },
+                    { label: 'Flats & Apartments', count: listings.filter((l) => l.category === 'apartment' || l.category === 'room').length, color: 'bg-zinc-600' },
                     { label: 'Houses & Villas', count: listings.filter((l) => l.category === 'house').length, color: 'bg-blue-500' },
-                    { label: 'Land & Plots (Aana)', count: listings.filter((l) => l.category === 'land').length, color: 'bg-emerald-500' },
+                    { label: 'Land & Plots (Aana)', count: listings.filter((l) => l.category === 'land').length, color: 'bg-zinc-500' },
                     { label: 'Shops & Shutters', count: listings.filter((l) => l.category === 'shop' || l.category === 'commercial').length, color: 'bg-orange-500' },
                     { label: 'Hotels & Lodges', count: listings.filter((l) => l.category === 'hotel').length, color: 'bg-amber-500' },
                     { label: 'Running Businesses', count: listings.filter((l) => l.category === 'business').length, color: 'bg-purple-500' },
@@ -634,7 +634,7 @@ export default function AdminPage() {
                       </div>
                       <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
                         <div
-                          className="h-full bg-teal-500 rounded-full"
+                          className="h-full bg-zinc-600 rounded-full"
                           style={{ width: loc.pct }}
                         ></div>
                       </div>
@@ -649,7 +649,7 @@ export default function AdminPage() {
                   <h3 className="font-bold text-sm text-white">Recent Inquiries</h3>
                   <button
                     onClick={() => setActiveTab('leads')}
-                    className="text-xs text-teal-400 hover:underline"
+                    className="text-xs text-zinc-100 hover:underline"
                   >
                     View All ({inquiries.length})
                   </button>
@@ -659,7 +659,7 @@ export default function AdminPage() {
                     <div key={inq.id} className="p-3 rounded-2xl bg-slate-800/60 border border-slate-800 text-xs space-y-1">
                       <div className="flex items-center justify-between">
                         <span className="font-bold text-white">{inq.name}</span>
-                        <span className="text-[10px] px-2 py-0.5 rounded bg-teal-950 text-teal-300 capitalize">
+                        <span className="text-[10px] px-2 py-0.5 rounded bg-zinc-900 text-zinc-200 capitalize">
                           {inq.status}
                         </span>
                       </div>
@@ -670,7 +670,7 @@ export default function AdminPage() {
                           href={`https://wa.me/977${inq.phone.replace(/[^0-9]/g, '')}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-emerald-400 hover:underline flex items-center gap-1"
+                          className="text-white hover:underline flex items-center gap-1"
                         >
                           <MessageSquare className="w-3 h-3" />
                           <span>WhatsApp</span>
@@ -702,7 +702,7 @@ export default function AdminPage() {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setAddListingModalOpen(true)}
-                  className="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-sm"
+                  className="px-4 py-2 rounded-xl bg-white hover:bg-zinc-200 text-black font-semibold text-xs flex items-center gap-1.5 shadow-sm"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Add Property</span>
@@ -718,7 +718,7 @@ export default function AdminPage() {
                 value={listingSearch}
                 onChange={(e) => setListingSearch(e.target.value)}
                 placeholder="Search listing by title or location..."
-                className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-zinc-400"
               />
             </div>
 
@@ -758,7 +758,7 @@ export default function AdminPage() {
                                 <Link
                                   href={`/listings/${l.slug || l.id}`}
                                   target="_blank"
-                                  className="font-semibold text-white hover:text-teal-400 line-clamp-1 flex items-center gap-1"
+                                  className="font-semibold text-white hover:text-zinc-100 line-clamp-1 flex items-center gap-1"
                                 >
                                   <span>{l.title}</span>
                                   <ExternalLink className="w-3 h-3 text-slate-500" />
@@ -774,7 +774,7 @@ export default function AdminPage() {
                               {l.type} • {l.category}
                             </span>
                           </td>
-                          <td className="py-3.5 px-4 font-mono font-bold text-teal-400">
+                          <td className="py-3.5 px-4 font-mono font-bold text-zinc-100">
                             {formatNPR(l.price)}
                           </td>
                           <td className="py-3.5 px-4">
@@ -864,7 +864,7 @@ export default function AdminPage() {
 
             {submissions.length === 0 ? (
               <div className="p-12 text-center rounded-3xl bg-slate-900 border border-slate-800">
-                <CheckCircle2 className="w-12 h-12 text-teal-500 mx-auto mb-3" />
+                <CheckCircle2 className="w-12 h-12 text-zinc-300 mx-auto mb-3" />
                 <h3 className="font-bold text-base text-white">Queue is Clear</h3>
                 <p className="text-xs text-slate-400 mt-1">No pending seller submissions waiting for review.</p>
               </div>
@@ -882,7 +882,7 @@ export default function AdminPage() {
                             sub.status === 'pending'
                               ? 'bg-amber-950 text-amber-400 border border-amber-800'
                               : sub.status === 'approved'
-                              ? 'bg-emerald-950 text-emerald-400 border border-emerald-800'
+                              ? 'bg-zinc-900 text-white border border-zinc-700'
                               : 'bg-rose-950 text-rose-400 border border-rose-800'
                           }`}
                         >
@@ -894,7 +894,7 @@ export default function AdminPage() {
                         </p>
                       </div>
 
-                      <div className="font-mono font-bold text-teal-400 text-sm flex-shrink-0">
+                      <div className="font-mono font-bold text-zinc-100 text-sm flex-shrink-0">
                         {formatNPR(sub.price)}
                       </div>
                     </div>
@@ -922,7 +922,7 @@ export default function AdminPage() {
                           href={`https://wa.me/977${sub.ownerPhone.replace(/[^0-9]/g, '')}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 rounded-xl bg-emerald-950 hover:bg-emerald-900 text-emerald-400 border border-emerald-800"
+                          className="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-700"
                           title="WhatsApp Owner"
                         >
                           <MessageSquare className="w-3.5 h-3.5" />
@@ -939,7 +939,7 @@ export default function AdminPage() {
                             refreshData();
                             showToast(`Approved & published to public site as ID #${res?.id}!`);
                           }}
-                          className="flex-1 py-2 px-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                          className="flex-1 py-2 px-3 rounded-xl bg-white hover:bg-zinc-200 text-black font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm"
                         >
                           <CheckCircle2 className="w-4 h-4" />
                           <span>Approve & Publish Live</span>
@@ -1018,7 +1018,7 @@ export default function AdminPage() {
                             via {inq.source}
                           </span>
                         </div>
-                        <p className="text-xs text-teal-400 font-semibold mt-1">
+                        <p className="text-xs text-zinc-100 font-semibold mt-1">
                           Ref: {inq.listingTitle}
                         </p>
                       </div>
@@ -1038,7 +1038,7 @@ export default function AdminPage() {
                               : inq.status === 'negotiating'
                               ? 'bg-amber-950 text-amber-300 border border-amber-800'
                               : inq.status === 'closed'
-                              ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                              ? 'bg-zinc-900 text-zinc-200 border border-zinc-700'
                               : 'bg-slate-800 text-slate-300 border border-slate-700'
                           }`}
                         >
@@ -1055,7 +1055,7 @@ export default function AdminPage() {
                           href={`https://wa.me/977${inq.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Namaste ${inq.name}, this is Himal Estates regarding your inquiry on "${inq.listingTitle}". When would you like to speak?`)}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white transition-colors"
+                          className="p-2 rounded-xl bg-white hover:bg-zinc-200 text-black transition-colors"
                           title="WhatsApp Customer"
                         >
                           <MessageSquare className="w-4 h-4" />
@@ -1087,7 +1087,7 @@ export default function AdminPage() {
                           showToast('Broker notes saved');
                         }}
                         placeholder="Add private note (e.g. buyer budget, inspection date, offer price)..."
-                        className="flex-1 px-3 py-1 rounded-xl bg-slate-800/80 border border-slate-700 text-xs text-slate-200 focus:outline-none focus:ring-1 focus:ring-teal-500"
+                        className="flex-1 px-3 py-1 rounded-xl bg-slate-800/80 border border-slate-700 text-xs text-slate-200 focus:outline-none focus:ring-1 focus:ring-zinc-400"
                       />
                     </div>
                   </div>
@@ -1137,7 +1137,7 @@ export default function AdminPage() {
                 <div className="font-display font-bold text-2xl text-white">
                   {deals.length} deals
                 </div>
-                <span className="text-[11px] text-teal-400">{commSummary?.closedDealsCount || 0} finalized</span>
+                <span className="text-[11px] text-zinc-100">{commSummary?.closedDealsCount || 0} finalized</span>
               </div>
 
               <div className="p-5 rounded-3xl bg-slate-900 border border-slate-800">
@@ -1150,10 +1150,10 @@ export default function AdminPage() {
 
               <div className="p-5 rounded-3xl bg-slate-900 border border-slate-800">
                 <span className="text-slate-400 text-xs block mb-1">Total Commission Earned</span>
-                <div className="font-display font-bold text-2xl text-emerald-400">
+                <div className="font-display font-bold text-2xl text-white">
                   {commSummary ? formatNPR(commSummary.totalCommissionEarned) : 'NPR 6,52,500'}
                 </div>
-                <span className="text-[11px] text-emerald-400">Net revenue</span>
+                <span className="text-[11px] text-white">Net revenue</span>
               </div>
 
               <div className="p-5 rounded-3xl bg-slate-900 border border-slate-800">
@@ -1203,7 +1203,7 @@ export default function AdminPage() {
                         <td className="py-3.5 px-4 font-mono text-slate-400">
                           {d.commissionRate}%
                         </td>
-                        <td className="py-3.5 px-4 font-mono font-bold text-emerald-400">
+                        <td className="py-3.5 px-4 font-mono font-bold text-white">
                           {formatNPR(d.commissionAmount)}
                           {d.commissionDue > 0 && (
                             <span className="text-[10px] text-amber-400 block font-normal">
@@ -1215,7 +1215,7 @@ export default function AdminPage() {
                           <span
                             className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
                               d.status === 'closed'
-                                ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                                ? 'bg-zinc-900 text-zinc-200 border border-zinc-700'
                                 : 'bg-amber-950 text-amber-300 border border-amber-800'
                             }`}
                           >
@@ -1271,17 +1271,17 @@ export default function AdminPage() {
               <div className="lg:col-span-5 flex flex-col items-center">
                 <div
                   ref={flyerCardRef}
-                  className="w-full max-w-sm aspect-[4/5] rounded-3xl bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 border-4 border-teal-600/60 overflow-hidden shadow-2xl relative flex flex-col justify-between p-5 text-white"
+                  className="w-full max-w-sm aspect-[4/5] rounded-3xl bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 border-4 border-zinc-700/60 overflow-hidden shadow-2xl relative flex flex-col justify-between p-5 text-white"
                 >
                   {/* Card Header */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-xl bg-teal-600 text-white font-bold text-sm flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-xl bg-white text-black font-bold text-sm flex items-center justify-center">
                         HE
                       </div>
                       <div>
                         <div className="font-display font-bold text-xs tracking-tight">HIMAL ESTATES</div>
-                        <div className="text-[9px] text-teal-400 uppercase tracking-wider font-semibold">
+                        <div className="text-[9px] text-zinc-100 uppercase tracking-wider font-semibold">
                           Verified Property Listing
                         </div>
                       </div>
@@ -1299,7 +1299,7 @@ export default function AdminPage() {
                       alt="social flyer"
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-teal-800/90 text-white font-mono font-bold text-xs backdrop-blur-sm">
+                    <div className="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-zinc-900/90 text-white font-mono font-bold text-xs backdrop-blur-sm">
                       {currentSocialListing ? formatNPR(currentSocialListing.price) : ''}
                       {currentSocialListing?.priceType === 'perMonth' ? '/mo' : ''}
                     </div>
@@ -1311,7 +1311,7 @@ export default function AdminPage() {
                       {currentSocialListing?.title}
                     </h3>
                     <div className="flex items-center gap-1.5 text-slate-300 text-[11px]">
-                      <MapPin className="w-3.5 h-3.5 text-teal-400" />
+                      <MapPin className="w-3.5 h-3.5 text-zinc-100" />
                       <span>{currentSocialListing?.location.tole || ''}, {currentSocialListing?.location.district}</span>
                       <span>•</span>
                       <span>{currentSocialListing?.area} {currentSocialListing?.areaUnit}</span>
@@ -1322,11 +1322,11 @@ export default function AdminPage() {
                   <div className="mt-3 pt-3 border-t border-slate-800 flex items-center justify-between bg-slate-900/90 -mx-5 -mb-5 p-4 rounded-b-2xl">
                     <div>
                       <div className="text-[10px] text-slate-400">Inspection &amp; Inquiries:</div>
-                      <div className="font-mono font-bold text-xs text-emerald-400">{brand.phone}</div>
+                      <div className="font-mono font-bold text-xs text-white">{brand.phone}</div>
                     </div>
                     <div className="text-right">
                       <div className="text-[9px] text-slate-400">Platform Website:</div>
-                      <div className="font-semibold text-[10px] text-teal-300">{brand.domain}</div>
+                      <div className="font-semibold text-[10px] text-zinc-200">{brand.domain}</div>
                     </div>
                   </div>
                 </div>
@@ -1336,7 +1336,7 @@ export default function AdminPage() {
                     onClick={() => {
                       alert('Flyer saved! Ready to upload to Facebook & TikTok story.');
                     }}
-                    className="flex-1 py-2.5 px-4 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow-sm"
+                    className="flex-1 py-2.5 px-4 rounded-xl bg-white hover:bg-zinc-200 text-black font-semibold text-xs flex items-center justify-center gap-1.5 shadow-sm"
                   >
                     <Download className="w-4 h-4" />
                     <span>Download Flyer</span>
@@ -1348,7 +1348,7 @@ export default function AdminPage() {
               <div className="lg:col-span-7 bg-slate-900 rounded-3xl p-6 border border-slate-800 space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-sm text-white flex items-center gap-2">
-                    <Copy className="w-4 h-4 text-teal-400" />
+                    <Copy className="w-4 h-4 text-zinc-100" />
                     <span>Formatted Post Caption (Facebook / TikTok / Instagram)</span>
                   </h3>
 
@@ -1356,7 +1356,7 @@ export default function AdminPage() {
                     onClick={handleCopyCaption}
                     className={`px-3 py-1.5 rounded-xl font-semibold text-xs flex items-center gap-1.5 transition-all ${
                       copiedCaption
-                        ? 'bg-emerald-600 text-white'
+                        ? 'bg-white text-black'
                         : 'bg-slate-800 hover:bg-slate-700 text-slate-200'
                     }`}
                   >
@@ -1372,8 +1372,8 @@ export default function AdminPage() {
                   className="w-full p-4 rounded-2xl bg-slate-950 border border-slate-800 text-xs font-mono text-slate-300 leading-relaxed focus:outline-none"
                 ></textarea>
 
-                <div className="p-4 rounded-2xl bg-teal-950/60 border border-teal-800 text-xs text-teal-200 space-y-1">
-                  <span className="font-bold block text-teal-300">How to use this during client pitch:</span>
+                <div className="p-4 rounded-2xl bg-zinc-900/60 border border-zinc-700 text-xs text-zinc-300 space-y-1">
+                  <span className="font-bold block text-zinc-200">How to use this during client pitch:</span>
                   <p>
                     Show the client: Whenever he lists a property on Himal Estates, he doesn&apos;t need to hire a graphic designer or retype details on his phone. In 1 second, he gets a ready-made flyer and pre-written hashtags to paste directly into his TikTok and Facebook groups!
                   </p>
@@ -1406,7 +1406,7 @@ export default function AdminPage() {
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
                   placeholder="e.g. Modern 2BHK Furnished Flat in Sanepa"
-                  className="w-full px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-1 focus:ring-teal-500"
+                  className="w-full px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-1 focus:ring-zinc-400"
                 />
               </div>
 
@@ -1524,7 +1524,7 @@ export default function AdminPage() {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold"
+                  className="px-5 py-2 rounded-xl bg-white hover:bg-zinc-200 text-black text-xs font-semibold"
                 >
                   Publish Listing
                 </button>

@@ -18,14 +18,16 @@ export function FeaturedListings({ filter = 'all' }: FeaturedListingsProps) {
 
   useEffect(() => {
     let items = getFeaturedListings();
-    if (filter === 'rent') {
-      items = items.filter((l) => l.type === 'rent');
-    } else if (filter === 'sale') {
-      items = items.filter((l) => l.type === 'sale');
+    if (filter === 'apartment') {
+      items = items.filter((l) => l.category === 'apartment' || l.category === 'room');
+    } else if (filter === 'house') {
+      items = items.filter((l) => l.category === 'house' || l.category === 'villa');
     } else if (filter === 'land') {
       items = items.filter((l) => l.category === 'land');
+    } else if (filter === 'commercial') {
+      items = items.filter((l) => l.category === 'shop' || l.category === 'commercial' || l.category === 'office');
     } else if (filter === 'business') {
-      items = items.filter((l) => l.category === 'business' || l.type === 'business');
+      items = items.filter((l) => l.category === 'business' || l.category === 'hotel' || l.type === 'business');
     }
     setFeatured(items.slice(0, 8));
 
@@ -42,14 +44,14 @@ export function FeaturedListings({ filter = 'all' }: FeaturedListingsProps) {
     <section className="py-4 sm:py-6 bg-white">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         {/* Crisp Section Header */}
-        <div className="flex items-center justify-between mb-3 sm:mb-4 pb-2 border-b border-gray-100">
-          <h2 className="font-bold text-base sm:text-lg text-[#111827]">
+        <div className="flex items-center justify-between mb-3 sm:mb-4 pb-2 border-b border-[#E5E5E5]">
+          <h2 className="font-bold text-base sm:text-lg text-[#0F0F0F]">
             {isNepali ? 'विशेष सिफारिस सूचीहरू' : 'Featured / Trending Properties'}
           </h2>
 
           <Link
             href="/listings?featured=true"
-            className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-teal-800 hover:underline"
+            className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-[#0F0F0F] hover:underline"
           >
             <span>{isNepali ? 'सबै हेर्नुहोस्' : 'View all'}</span>
             <ArrowRight className="w-3.5 h-3.5" />

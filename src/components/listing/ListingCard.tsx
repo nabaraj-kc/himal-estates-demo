@@ -57,9 +57,9 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
     const priceText = formatNPR(listing.price);
     if (listing.priceType === 'perMonth') {
       return (
-        <span className="font-bold text-sm sm:text-base text-[#111827]">
+        <span className="font-bold text-sm sm:text-base text-[#0F0F0F]">
           {priceText}
-          <span className="text-xs text-[#6B7280] font-normal ml-1">
+          <span className="text-xs text-[#71717A] font-normal ml-1">
             {isNepali ? '/महिना' : '/mo'}
           </span>
         </span>
@@ -67,16 +67,16 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
     }
     if (listing.priceType === 'perAana') {
       return (
-        <span className="font-bold text-sm sm:text-base text-[#111827]">
+        <span className="font-bold text-sm sm:text-base text-[#0F0F0F]">
           {priceText}
-          <span className="text-xs text-[#6B7280] font-normal ml-1">
+          <span className="text-xs text-[#71717A] font-normal ml-1">
             {isNepali ? '/आना' : '/aana'}
           </span>
         </span>
       );
     }
     return (
-      <span className="font-bold text-sm sm:text-base text-[#111827]">
+      <span className="font-bold text-sm sm:text-base text-[#0F0F0F]">
         {priceText}
       </span>
     );
@@ -117,10 +117,10 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
   return (
     <article
       onClick={handleCardClick}
-      className="group relative bg-white rounded-lg border border-gray-200 overflow-hidden hover:border-gray-300 hover:shadow-md transition-all duration-200 flex flex-col h-full cursor-pointer"
+      className="group relative bg-white rounded-lg border border-[#E5E5E5] overflow-hidden hover:border-[#0F0F0F] transition-all duration-200 flex flex-col h-full cursor-pointer"
     >
       {/* Photo Container */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#F5F5F7]">
         <img
           src={imgError ? 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80' : primaryImage}
           alt={listing.title}
@@ -131,7 +131,7 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
 
         {/* Minimal ONE single subtle tag */}
         <div className="absolute top-2 left-2 z-10">
-          <span className="px-2 py-0.5 rounded bg-black/60 text-white text-[10px] font-medium tracking-wide">
+          <span className="px-2 py-0.5 rounded bg-[#0F0F0F]/80 text-white text-[10px] font-medium tracking-wide">
             {singleLabel}
           </span>
         </div>
@@ -139,10 +139,10 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
         {/* Minimal favorite heart icon */}
         <button
           onClick={handleFavoriteClick}
-          className="absolute top-2 right-2 z-10 p-1.5 rounded-full bg-white/90 text-gray-700 hover:text-rose-600 transition-colors shadow-sm"
+          className="absolute top-2 right-2 z-10 p-1.5 rounded-full bg-white/90 text-[#71717A] hover:text-[#0F0F0F] transition-colors shadow-sm"
           aria-label={isSaved ? 'Remove from favorites' : 'Save to favorites'}
         >
-          <Heart className={`w-3.5 h-3.5 ${isSaved ? 'fill-rose-600 text-rose-600' : ''}`} />
+          <Heart className={`w-3.5 h-3.5 ${isSaved ? 'fill-[#EF4444] text-[#EF4444]' : ''}`} />
         </button>
       </div>
 
@@ -153,13 +153,13 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
           <div className="leading-tight">{renderPrice()}</div>
 
           {/* Title: concise max 2 lines with line-clamp-2 */}
-          <h3 className="font-medium text-xs sm:text-sm text-[#111827] line-clamp-2 leading-snug mt-1 group-hover:text-teal-900 transition-colors">
+          <h3 className="font-medium text-xs sm:text-sm text-[#0F0F0F] line-clamp-2 leading-snug mt-1 transition-colors">
             {isNepali && listing.titleNe ? listing.titleNe : listing.title}
           </h3>
         </div>
 
         {/* Clean inline metadata separated by subtle dot • */}
-        <div className="text-[11px] text-[#6B7280] truncate mt-1 pt-1.5 border-t border-gray-100">
+        <div className="text-[11px] text-[#71717A] truncate mt-1 pt-1.5 border-t border-[#E5E5E5]">
           {metaParts.join(' • ')}
         </div>
       </div>

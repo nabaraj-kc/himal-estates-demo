@@ -176,7 +176,7 @@ export function InboxClient() {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder={isNepali ? 'सम्पत्ति वा एजेन्ट खोज्नुहोस्...' : 'Search chats or agents...'}
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-teal-800"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-white border border-[#E5E5E5] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#0F0F0F]"
                 />
               </div>
             </div>
@@ -200,24 +200,24 @@ export function InboxClient() {
                         setSelectedConvId(conv.id);
                         markConversationRead(conv.id);
                       }}
-                      className={`w-full text-left p-3.5 flex items-start gap-3 transition-colors hover:bg-gray-50 ${
-                        isSelected ? 'bg-teal-50/60 border-l-4 border-teal-800' : ''
+                      className={`w-full text-left p-3.5 flex items-start gap-3 transition-colors hover:bg-[#F5F5F7] ${
+                        isSelected ? 'bg-[#F5F5F7] border-l-4 border-[#0F0F0F]' : ''
                       }`}
                     >
                       {/* Property Thumbnail */}
                       <img
                         src={conv.listingImage}
                         alt={conv.listingTitle}
-                        className="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-gray-200"
+                        className="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-[#E5E5E5]"
                       />
 
                       {/* Info & Last message */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-baseline justify-between gap-1 mb-0.5">
-                          <span className="font-semibold text-xs sm:text-sm text-[#111827] truncate">
+                          <span className="font-semibold text-xs sm:text-sm text-[#0F0F0F] truncate">
                             {conv.agentName}
                           </span>
-                          <span className="text-[10px] text-gray-400 flex-shrink-0">
+                          <span className="text-[10px] text-[#71717A] flex-shrink-0">
                             {new Date(conv.updatedAt).toLocaleTimeString([], {
                               hour: '2-digit',
                               minute: '2-digit',
@@ -225,18 +225,18 @@ export function InboxClient() {
                           </span>
                         </div>
 
-                        <p className="text-[11px] font-medium text-gray-700 truncate">
+                        <p className="text-[11px] font-medium text-[#71717A] truncate">
                           {conv.listingTitle}
                         </p>
 
-                        <p className="text-xs text-gray-500 truncate mt-0.5">
+                        <p className="text-xs text-[#71717A] truncate mt-0.5">
                           {lastMsg ? lastMsg.text : 'No messages yet'}
                         </p>
                       </div>
 
                       {/* Unread dot */}
                       {conv.unreadCount > 0 && (
-                        <span className="w-2.5 h-2.5 rounded-full bg-teal-800 flex-shrink-0 mt-2" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444] flex-shrink-0 mt-2" />
                       )}
                     </button>
                   );
@@ -265,18 +265,18 @@ export function InboxClient() {
                       <ArrowLeft className="w-5 h-5" />
                     </button>
 
-                    <div className="w-9 h-9 rounded-full bg-teal-800 text-white font-bold text-xs flex items-center justify-center flex-shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-[#0F0F0F] text-white font-bold text-xs flex items-center justify-center flex-shrink-0">
                       {activeConversation.agentName.slice(0, 2).toUpperCase()}
                     </div>
 
                     <div className="min-w-0">
                       <div className="flex items-center gap-1.5">
-                        <span className="font-bold text-sm text-[#111827] truncate">
+                        <span className="font-bold text-sm text-[#0F0F0F] truncate">
                           {activeConversation.agentName}
                         </span>
-                        <ShieldCheck className="w-3.5 h-3.5 text-teal-700 flex-shrink-0" />
+                        <ShieldCheck className="w-3.5 h-3.5 text-[#71717A] flex-shrink-0" />
                       </div>
-                      <p className="text-[11px] text-gray-500 truncate">
+                      <p className="text-[11px] text-[#71717A] truncate">
                         {activeConversation.agentRole} • {activeConversation.agentPhone}
                       </p>
                     </div>
@@ -286,7 +286,7 @@ export function InboxClient() {
                   <div className="flex items-center gap-2">
                     <a
                       href={`tel:${activeConversation.agentPhone}`}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-teal-800 hover:bg-teal-900 text-white text-xs font-semibold shadow-sm transition-all active:scale-95 flex-shrink-0"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0F0F0F] hover:bg-[#27272A] text-white text-xs font-semibold shadow-sm transition-all active:scale-95 flex-shrink-0"
                     >
                       <Phone className="w-3.5 h-3.5" />
                       <span>{isNepali ? 'कल गर्नुहोस्' : 'Call Agent'}</span>
@@ -295,20 +295,20 @@ export function InboxClient() {
                 </div>
 
                 {/* 2. Sticky Property Context Bar */}
-                <div className="p-2.5 sm:p-3 bg-gray-50 border-b border-gray-200 flex items-center justify-between gap-3">
+                <div className="p-2.5 sm:p-3 bg-[#F5F5F7] border-b border-[#E5E5E5] flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3 min-w-0">
                     <img
                       src={activeConversation.listingImage}
                       alt={activeConversation.listingTitle}
-                      className="w-12 h-10 rounded object-cover border border-gray-200 flex-shrink-0"
+                      className="w-12 h-10 rounded object-cover border border-[#E5E5E5] flex-shrink-0"
                     />
                     <div className="min-w-0">
-                      <span className="text-xs font-bold text-[#111827] block truncate">
+                      <span className="text-xs font-bold text-[#0F0F0F] block truncate">
                         {formatNPR(activeConversation.listingPrice)}
                         {activeConversation.listingPriceType === 'perMonth' ? ' / mo' : ''}
                         {activeConversation.listingPriceType === 'perAana' ? ' / aana' : ''}
                       </span>
-                      <p className="text-[11px] text-gray-600 truncate">
+                      <p className="text-[11px] text-[#71717A] truncate">
                         {activeConversation.listingTitle}
                       </p>
                     </div>
@@ -316,15 +316,15 @@ export function InboxClient() {
 
                   <Link
                     href={`/listings/${activeConversation.listingSlug}`}
-                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-teal-800 hover:underline flex-shrink-0"
+                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#0F0F0F] hover:underline flex-shrink-0"
                   >
                     <span>{isNepali ? 'सम्पत्ति हेर्नुहोस्' : 'View Listing'}</span>
-                    <ExternalLink className="w-3 h-3" />
+                    <ExternalLink className="w-3 h-3 text-[#71717A]" />
                   </Link>
                 </div>
 
                 {/* 3. Messages Stream */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50/40">
+                <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#F5F5F7]/30">
                   {activeConversation.messages.map((msg) => {
                     const isClient = msg.sender === 'client';
                     return (
@@ -335,13 +335,13 @@ export function InboxClient() {
                         <div
                           className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-4 py-2.5 text-xs sm:text-sm leading-relaxed shadow-sm ${
                             isClient
-                              ? 'bg-teal-800 text-white rounded-br-none'
-                              : 'bg-white text-[#111827] border border-gray-200 rounded-bl-none'
+                              ? 'bg-[#0F0F0F] text-white rounded-br-none'
+                              : 'bg-white text-[#0F0F0F] border border-[#E5E5E5] rounded-bl-none'
                           }`}
                         >
                           {msg.text}
                         </div>
-                        <span className="text-[10px] text-gray-400 mt-1 px-1">
+                        <span className="text-[10px] text-[#71717A] mt-1 px-1">
                           {new Date(msg.timestamp).toLocaleTimeString([], {
                             hour: '2-digit',
                             minute: '2-digit',
@@ -353,10 +353,10 @@ export function InboxClient() {
 
                   {/* Typing Indicator */}
                   {isAgentTyping && (
-                    <div className="flex items-center gap-1.5 p-2 rounded-xl bg-white border border-gray-200 text-xs text-gray-500 w-fit">
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-800 animate-bounce" />
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-800 animate-bounce [animation-delay:0.2s]" />
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-800 animate-bounce [animation-delay:0.4s]" />
+                    <div className="flex items-center gap-1.5 p-2 rounded-xl bg-white border border-[#E5E5E5] text-xs text-[#71717A] w-fit">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0F0F0F] animate-bounce" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0F0F0F] animate-bounce [animation-delay:0.2s]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0F0F0F] animate-bounce [animation-delay:0.4s]" />
                       <span className="ml-1 text-[11px]">
                         {activeConversation.agentName} {isNepali ? 'लेख्दै हुनुहुन्छ...' : 'is typing...'}
                       </span>
@@ -367,7 +367,7 @@ export function InboxClient() {
                 </div>
 
                 {/* 4. Quick Suggestions Bar */}
-                <div className="px-3 pt-2 pb-1 bg-white border-t border-gray-100 flex items-center gap-1.5 overflow-x-auto no-scrollbar text-[11px]">
+                <div className="px-3 pt-2 pb-1 bg-white border-t border-[#E5E5E5] flex items-center gap-1.5 overflow-x-auto no-scrollbar text-[11px]">
                   {[
                     isNepali ? 'कहिले हेर्न मिल्छ?' : 'When can I visit?',
                     isNepali ? 'मूल्य केही घट्छ?' : 'Is price negotiable?',
@@ -377,7 +377,7 @@ export function InboxClient() {
                     <button
                       key={idx}
                       onClick={() => handleSendMessage(undefined, chip)}
-                      className="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-teal-50 hover:text-teal-800 text-gray-600 whitespace-nowrap transition-colors"
+                      className="px-2.5 py-1 rounded-full bg-[#F5F5F7] hover:bg-[#E5E5E5] text-[#0F0F0F] whitespace-nowrap transition-colors"
                     >
                       {chip}
                     </button>
@@ -387,7 +387,7 @@ export function InboxClient() {
                 {/* 5. Message Composer */}
                 <form
                   onSubmit={handleSendMessage}
-                  className="p-3 bg-white border-t border-gray-200 flex items-center gap-2"
+                  className="p-3 bg-white border-t border-[#E5E5E5] flex items-center gap-2"
                 >
                   <input
                     type="text"
@@ -398,12 +398,12 @@ export function InboxClient() {
                         ? 'एजेन्टलाई सन्देश लेख्नुहोस् (स्थलगत भ्रमण, मूल्य, कागजात...)'
                         : 'Write your message to the agent (site visit, price, docs...)'
                     }
-                    className="flex-1 px-3.5 py-2.5 text-xs sm:text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-teal-800 focus:bg-white text-[#111827]"
+                    className="flex-1 px-3.5 py-2.5 text-xs sm:text-sm bg-[#F5F5F7] border border-[#E5E5E5] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#0F0F0F] focus:bg-white text-[#0F0F0F]"
                   />
                   <button
                     type="submit"
                     disabled={!messageInput.trim()}
-                    className="p-2.5 rounded-xl bg-teal-800 hover:bg-teal-900 disabled:opacity-40 text-white transition-all active:scale-95 flex-shrink-0"
+                    className="p-2.5 rounded-xl bg-[#0F0F0F] hover:bg-[#27272A] disabled:opacity-40 text-white transition-all active:scale-95 flex-shrink-0"
                     aria-label="Send message"
                   >
                     <Send className="w-4 h-4" />

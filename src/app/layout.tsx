@@ -63,7 +63,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${plusJakartaSans.variable} ${notoSansDevanagari.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-white text-[#111827] overflow-x-hidden selection:bg-teal-700 selection:text-white pb-20 md:pb-0">
+      <body className="min-h-full flex flex-col font-sans bg-white text-[#0F0F0F] overflow-x-hidden selection:bg-[#0F0F0F] selection:text-white pb-20 md:pb-0">
         <LanguageProvider>
           {children}
           <BottomNav />

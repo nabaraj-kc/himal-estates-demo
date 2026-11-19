@@ -259,6 +259,18 @@ export interface Conversation {
   updatedAt: string;
 }
 
+export interface AppNotification {
+  id: string;
+  type: 'price_drop' | 'message' | 'approval' | 'system';
+  title: string;
+  titleNe?: string;
+  description: string;
+  descriptionNe?: string;
+  timestamp: string;
+  isRead: boolean;
+  linkUrl?: string;
+}
+
 // ------------------------------------------------------------------
 // DEAL / COMMISSION
 // ------------------------------------------------------------------

@@ -92,30 +92,30 @@ export function CallModal({ isOpen, onClose, propertyTitle }: CallModalProps) {
 
         {/* Top Info */}
         <div className="w-full">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-950/80 border border-teal-800/60 text-teal-300 text-xs font-semibold mb-6">
-            <ShieldCheck className="w-3.5 h-3.5 text-teal-400" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#18181B] border border-[#27272A] text-zinc-300 text-xs font-semibold mb-6">
+            <ShieldCheck className="w-3.5 h-3.5 text-white" />
             <span>{brand.name} • Certified Broker</span>
           </div>
 
           {/* Avatar with pulse ring */}
-          <div className="relative mx-auto w-24 h-24 mb-4">
+          <div className="relative mx-auto w-20 h-20 mb-4">
             <div
-              className={`absolute inset-0 rounded-full bg-teal-500/20 ${
+              className={`absolute inset-0 rounded-full bg-white/10 ${
                 callState === 'ringing' ? 'animate-ping' : ''
               }`}
             ></div>
-            <div className="relative w-full h-full rounded-full bg-gradient-to-tr from-teal-700 to-teal-500 flex items-center justify-center border-2 border-teal-400 shadow-lg">
-              <span className="font-display font-bold text-2xl text-white">HE</span>
+            <div className="relative w-full h-full rounded-full bg-[#18181B] flex items-center justify-center border border-[#27272A] shadow-lg">
+              <span className="font-bold text-xl text-white">HE</span>
             </div>
           </div>
 
-          <h3 className="font-display font-bold text-xl text-white">
+          <h3 className="font-bold text-lg text-white">
             Himal Estates Advisory
           </h3>
-          <p className="text-xs text-slate-400 mt-1 font-mono">{brand.phone}</p>
+          <p className="text-xs text-zinc-400 mt-1 font-mono">{brand.phone}</p>
 
           {propertyTitle && (
-            <p className="text-[11px] text-teal-300/80 mt-2 px-3 py-1 rounded-lg bg-slate-800/80 line-clamp-1 border border-slate-700">
+            <p className="text-[11px] text-zinc-300 mt-2 px-3 py-1 rounded-lg bg-[#18181B] line-clamp-1 border border-[#27272A]">
               Ref: {propertyTitle}
             </p>
           )}
@@ -123,19 +123,19 @@ export function CallModal({ isOpen, onClose, propertyTitle }: CallModalProps) {
           {/* Call Status Indicator */}
           <div className="mt-4">
             {callState === 'ringing' && (
-              <div className="flex items-center justify-center gap-2 text-sm text-amber-400 animate-pulse">
+              <div className="flex items-center justify-center gap-2 text-sm text-zinc-300 animate-pulse">
                 <PhoneCall className="w-4 h-4" />
                 <span>{isNepali ? 'सम्पर्क गरिँदैछ (Ringing)...' : 'Connecting to Agent...'}</span>
               </div>
             )}
             {callState === 'connected' && (
-              <div className="flex items-center justify-center gap-2 text-sm text-emerald-400 font-mono font-bold">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <div className="flex items-center justify-center gap-2 text-sm text-white font-mono font-bold">
+                <span className="w-2 h-2 rounded-full bg-white animate-ping"></span>
                 <span>Connected • {formatTimer(timer)}</span>
               </div>
             )}
             {callState === 'ended' && (
-              <div className="text-sm text-rose-400">
+              <div className="text-sm text-zinc-400">
                 <span>{isNepali ? 'कल समाप्त भयो' : 'Call Ended'}</span>
               </div>
             )}
@@ -150,8 +150,8 @@ export function CallModal({ isOpen, onClose, propertyTitle }: CallModalProps) {
               disabled={callState !== 'connected'}
               className={`p-3.5 rounded-full transition-all ${
                 isMuted
-                  ? 'bg-rose-600/30 text-rose-400 border border-rose-500/50'
-                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                  ? 'bg-red-600/30 text-red-400 border border-red-500/50'
+                  : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
               }`}
               title="Mute"
             >
@@ -163,8 +163,8 @@ export function CallModal({ isOpen, onClose, propertyTitle }: CallModalProps) {
               disabled={callState !== 'connected'}
               className={`p-3.5 rounded-full transition-all ${
                 isSpeaker
-                  ? 'bg-teal-600/30 text-teal-300 border border-teal-500/50'
-                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                  ? 'bg-white/20 text-white border border-white/30'
+                  : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
               }`}
               title="Speaker"
             >
@@ -173,10 +173,10 @@ export function CallModal({ isOpen, onClose, propertyTitle }: CallModalProps) {
 
             <a
               href={`tel:${brand.phone}`}
-              className="p-3.5 rounded-full bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all sm:hidden"
+              className="p-3.5 rounded-full bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all sm:hidden"
               title="Dial on phone"
             >
-              <Phone className="w-5 h-5 text-emerald-400" />
+              <Phone className="w-5 h-5 text-white" />
             </a>
           </div>
 
@@ -184,18 +184,18 @@ export function CallModal({ isOpen, onClose, propertyTitle }: CallModalProps) {
           <div className="flex flex-col gap-2">
             <button
               onClick={handleEndCall}
-              className="w-full py-3.5 px-6 rounded-2xl bg-rose-600 hover:bg-rose-700 active:scale-95 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-rose-900/40 transition-all"
+              className="w-full py-3 px-6 rounded-xl bg-red-600 hover:bg-red-700 active:scale-95 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-lg transition-all"
             >
-              <PhoneOff className="w-5 h-5" />
+              <PhoneOff className="w-4 h-4" />
               <span>{isNepali ? 'कल अन्त्य गर्नुहोस्' : 'End Call'}</span>
             </button>
 
-            {/* Direct Phone Dial Link for Real Phones */}
+            {/* Direct Phone Dial Link */}
             <a
               href={`tel:${brand.phone}`}
-              className="text-[11px] text-slate-400 hover:text-teal-300 transition-colors py-1"
+              className="text-[11px] text-zinc-400 hover:text-white transition-colors py-1"
             >
-              {isNepali ? 'वा मोबाइलमा सिधै डायल गर्नुहोस्' : 'Or open phone dialer directly'}: {brand.phone}
+              {isNepali ? 'वा मोबाइलमा सिधै डायल गर्नुहोस्' : 'Or call directly'}: {brand.phone}
             </a>
           </div>
         </div>

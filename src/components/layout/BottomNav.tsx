@@ -3,31 +3,32 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Heart, Plus, MessageSquare, User } from 'lucide-react';
-import { getFavoriteIds, getTotalUnreadCount } from '@/lib/storage';
+import {
+  Home,
+  LayoutGrid,
+  PlusSquare,
+  Bell,
+  User,
+} from 'lucide-react';
+import { getUnreadNotificationsCount } from '@/lib/storage';
 import { useLanguage } from '@/context/LanguageContext';
 
 export function BottomNav() {
   const pathname = usePathname();
   const { isNepali } = useLanguage();
-  const [favoriteCount, setFavoriteCount] = useState(0);
-  const [unreadCount, setUnreadCount] = useState(0);
+  const [unreadNotifs, setUnreadNotifs] = useState(0);
 
   useEffect(() => {
     const updateCounts = () => {
-      setFavoriteCount(getFavoriteIds().length);
-      setUnreadCount(getTotalUnreadCount());
+      setUnreadNotifs(getUnreadNotificationsCount());
     };
-
     updateCounts();
 
-    window.addEventListener('himal_favorites_changed', updateCounts);
-    window.addEventListener('himal_conversations_changed', updateCounts);
+    window.addEventListener('himal_notifications_changed', updateCounts);
     window.addEventListener('storage', updateCounts);
 
     return () => {
-      window.removeEventListener('himal_favorites_changed', updateCounts);
-      window.removeEventListener('himal_conversations_changed', updateCounts);
+      window.removeEventListener('himal_notifications_changed', updateCounts);
       window.removeEventListener('storage', updateCounts);
     };
   }, []);
@@ -35,96 +36,78 @@ export function BottomNav() {
   const navItems = [
     {
       href: '/',
-      label: isNepali ? 'गृहपृष्ठ' : 'Home',
+      label: isNepali ? 'होम' : 'Home',
       icon: Home,
       isActive: pathname === '/',
     },
     {
-      href: '/saved',
-      label: isNepali ? 'सुरक्षित' : 'Saved',
-      icon: Heart,
-      isActive: pathname === '/saved',
-      badge: favoriteCount > 0 ? favoriteCount : undefined,
+      href: '/categories',
+      label: isNepali ? 'श्रेणी' : 'Categories',
+      icon: LayoutGrid,
+      isActive: pathname.startsWith('/categories'),
     },
     {
-      href: '/list-property',
-      label: isNepali ? 'पोस्ट (+)' : 'Post (+)',
-      icon: Plus,
-      isCenter: true,
-      isActive: pathname === '/list-property',
+      href: '/post',
+      label: isNepali ? 'पोस्ट' : 'Post Ad',
+      icon: PlusSquare,
+      isActive: pathname === '/post' || pathname === '/list-property',
     },
     {
-      href: '/inbox',
-      label: isNepali ? 'इन्बक्स' : 'Inbox',
-      icon: MessageSquare,
-      isActive: pathname.startsWith('/inbox'),
-      badge: unreadCount > 0 ? unreadCount : undefined,
+      href: '/notifications',
+      label: isNepali ? 'सूचना' : 'Notifications',
+      icon: Bell,
+      isActive: pathname.startsWith('/notifications'),
+      badge: unreadNotifs > 0,
     },
     {
-      href: '/profile',
-      label: isNepali ? 'प्रोफाइल' : 'Profile',
+      href: '/account',
+      label: isNepali ? 'खाता' : 'Account',
       icon: User,
-      isActive: pathname === '/profile',
+      isActive: pathname === '/account' || pathname === '/profile',
     },
   ];
 
   return (
     <nav
-      aria-label="Mobile Navigation"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]"
+      aria-label="Hamrobazar Mobile Navigation"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-[#E5E5E5] h-16 px-1 flex items-center justify-around"
     >
-      <div className="grid grid-cols-5 h-16 max-w-lg mx-auto px-1 items-center">
-        {navItems.map((item) => {
-          const Icon = item.icon;
+      {navItems.map((item) => {
+        const Icon = item.icon;
 
-          if (item.isCenter) {
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="flex flex-col items-center justify-center -mt-5 group"
-              >
-                <div className="w-12 h-12 rounded-full bg-teal-800 text-white flex items-center justify-center shadow-md active:scale-95 transition-transform group-hover:bg-teal-900 border-2 border-white">
-                  <Plus className="w-6 h-6 stroke-[2.5]" />
-                </div>
-                <span className="text-[10px] font-bold text-teal-800 mt-1">
-                  {item.label}
-                </span>
-              </Link>
-            );
-          }
-
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`flex flex-col items-center justify-center py-1 transition-colors relative ${
-                item.isActive ? 'text-teal-800' : 'text-gray-500 hover:text-gray-900'
-              }`}
-            >
-              <div className="relative">
-                <Icon
-                  className={`w-5 h-5 ${
-                    item.isActive ? 'stroke-[2.2] text-teal-800' : 'text-gray-500'
-                  }`}
-                />
-                {item.badge !== undefined && (
-                  <span className="absolute -top-1.5 -right-2 min-w-4 h-4 px-1 rounded-full bg-rose-600 text-white text-[10px] font-bold flex items-center justify-center leading-none">
-                    {item.badge}
-                  </span>
-                )}
-              </div>
-              <span
-                className={`text-[10px] mt-1 leading-none ${
-                  item.isActive ? 'font-bold text-teal-800' : 'font-medium text-gray-500'
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="flex flex-col items-center justify-center flex-1 py-1"
+          >
+            <div className="relative">
+              <div
+                className={`flex items-center justify-center transition-colors ${
+                  item.isActive
+                    ? 'bg-[#F5F5F7] rounded-xl p-1.5 text-[#0F0F0F]'
+                    : 'p-1.5 text-[#71717A] hover:text-[#0F0F0F]'
                 }`}
               >
-                {item.label}
-              </span>
-            </Link>
-          );
-        })}
-      </div>
+                <Icon className="w-6 h-6" strokeWidth={1.75} />
+              </div>
+
+              {/* Minimal Unread Dot (Dark Charcoal or subtle Red) */}
+              {item.badge && (
+                <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#EF4444] ring-2 ring-white" />
+              )}
+            </div>
+
+            <span
+              className={`text-[10px] leading-tight mt-0.5 ${
+                item.isActive ? 'font-semibold text-[#0F0F0F]' : 'font-normal text-[#71717A]'
+              }`}
+            >
+              {item.label}
+            </span>
+          </Link>
+        );
+      })}
     </nav>
   );
 }

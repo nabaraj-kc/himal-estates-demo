@@ -10,8 +10,6 @@ import {
   Send,
   Phone,
   ShieldCheck,
-  CheckCircle2,
-  Sparkles,
 } from 'lucide-react';
 
 interface ChatMessage {
@@ -67,7 +65,7 @@ export function ChatWidget() {
           : 'We have pristine 4 Aana residential land in Imadol (NPR 36 Lakh/Aana) and 1 Ropani in Budhanilkantha with clear Lalpurja. Would you like to schedule a site inspection?';
       } else if (q.includes('house') || q.includes('villa') || q.includes('buy') || q.includes('sale') || q.includes('घर')) {
         reply = isNepali
-          ? 'सानेपामा साढे २ तलाको लक्जरी बंगला (६.८ करोड) र बुढानीलकण्ठमा नयाँ घर (३.९५ करोड) उपलब्ध छन्। विस्तृत तस्बिर हेर्न चाहनुहुन्छ?'
+          ? 'सानेपामा साढे २ तलाको लक्जरी बंगला र बुढानीलकण्ठमा नयाँ घर उपलब्ध छन्। विस्तृत तस्बिर हेर्न चाहनुहुन्छ?'
           : 'We have verified standalone modern houses in Sanepa and Budhanilkantha. Would you like our senior broker to send complete floor plans to your WhatsApp?';
       } else if (q.includes('phone') || q.includes('number') || q.includes('call') || q.includes('contact') || q.includes('सम्पर्क')) {
         reply = isNepali
@@ -89,7 +87,7 @@ export function ChatWidget() {
         },
       ]);
       setIsTyping(false);
-    }, 1400);
+    }, 1200);
   };
 
   const handleSend = (e: React.FormEvent) => {
@@ -111,19 +109,19 @@ export function ChatWidget() {
 
   return (
     <>
-      {/* Floating Launcher Button */}
-      <div className="fixed bottom-5 right-5 z-40">
+      {/* Floating Launcher Button - positioned above bottom nav on mobile */}
+      <div className="fixed bottom-20 sm:bottom-5 right-4 sm:right-5 z-40">
         {!isOpen ? (
           <button
             onClick={() => setIsOpen(true)}
-            className="group relative flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-teal-700 hover:bg-teal-800 text-white shadow-xl shadow-teal-900/30 transition-all duration-300 hover:scale-105 active:scale-95 border border-teal-500/30"
+            className="group flex items-center gap-2 px-3.5 py-3 rounded-full bg-[#0F0F0F] hover:bg-[#27272A] text-white shadow-xl border border-[#18181B] transition-all duration-200 active:scale-95"
             aria-label="Open chat"
           >
             <div className="relative">
-              <MessageSquare className="w-5 h-5 text-white" />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse"></span>
+              <MessageSquare className="w-4 h-4 text-white" />
+              <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-white"></span>
             </div>
-            <span className="text-xs sm:text-sm font-semibold tracking-wide hidden sm:inline">
+            <span className="text-xs font-semibold tracking-wide hidden sm:inline">
               {isNepali ? 'एजेन्टसँग कुरा गर्नुहोस्' : 'Chat with Agent'}
             </span>
           </button>
@@ -132,22 +130,22 @@ export function ChatWidget() {
 
       {/* Chat Window Panel */}
       {isOpen && (
-        <div className="fixed bottom-5 right-5 z-50 w-[92vw] sm:w-[380px] h-[520px] max-h-[85vh] rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
+        <div className="fixed bottom-20 sm:bottom-5 right-4 sm:right-5 z-50 w-[92vw] sm:w-[360px] h-[480px] max-h-[80vh] rounded-2xl bg-white border border-[#E5E5E5] shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-200">
           {/* Header */}
-          <div className="bg-gradient-to-r from-teal-800 to-teal-700 p-4 text-white flex items-center justify-between shadow-sm">
-            <div className="flex items-center gap-3">
+          <div className="bg-[#0F0F0F] p-3.5 text-white flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-white/20 border border-white/30 flex items-center justify-center font-bold text-sm">
+                <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center font-bold text-xs">
                   HE
                 </div>
-                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-teal-800"></span>
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-white border-2 border-[#0F0F0F]"></span>
               </div>
               <div>
-                <h4 className="font-display font-bold text-sm leading-tight flex items-center gap-1.5">
+                <h4 className="font-bold text-xs leading-tight flex items-center gap-1">
                   <span>Himal Estates Advisor</span>
-                  <ShieldCheck className="w-3.5 h-3.5 text-teal-200" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-white" />
                 </h4>
-                <p className="text-[11px] text-teal-100/90 font-medium">
+                <p className="text-[10px] text-[#A1A1AA]">
                   {isNepali ? 'अनलाइन • १५ मिनेट भित्र जवाफ' : 'Online • 15-min human response'}
                 </p>
               </div>
@@ -156,41 +154,38 @@ export function ChatWidget() {
             <div className="flex items-center gap-1">
               <button
                 onClick={() => setIsCallModalOpen(true)}
-                className="p-2 rounded-full hover:bg-white/10 text-white transition-colors"
+                className="p-1.5 rounded-lg hover:bg-white/10 text-white transition-colors"
                 title="Call Agent"
                 aria-label="Call Agent"
               >
-                <Phone className="w-4 h-4 text-emerald-300" />
+                <Phone className="w-4 h-4 text-white" />
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 rounded-full hover:bg-white/10 text-white transition-colors"
+                className="p-1.5 rounded-lg hover:bg-white/10 text-white transition-colors"
                 title="Close chat"
                 aria-label="Close chat"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
           </div>
 
           {/* Quick Info Strip */}
-          <div className="bg-slate-50 dark:bg-slate-800/80 px-4 py-1.5 border-b border-slate-100 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
-            <span className="flex items-center gap-1">
-              <Sparkles className="w-3 h-3 text-orange-500" />
-              {isNepali ? 'प्रत्यक्ष मध्यस्थता सहायता' : 'Direct Middleman Support'}
-            </span>
+          <div className="bg-[#F5F5F7] px-3.5 py-1.5 border-b border-[#E5E5E5] text-[11px] text-[#71717A] flex items-center justify-between">
+            <span>Direct Middleman Support</span>
             <a
               href={`https://wa.me/${brand.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-emerald-600 dark:text-emerald-400 font-semibold hover:underline"
+              className="font-semibold text-[#0F0F0F] hover:underline"
             >
               WhatsApp
             </a>
           </div>
 
           {/* Messages Feed */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-3.5 bg-slate-50/40 dark:bg-slate-950/40">
+          <div className="flex-1 p-3.5 overflow-y-auto space-y-3 bg-white">
             {messages.map((msg) => (
               <div
                 key={msg.id}
@@ -199,15 +194,15 @@ export function ChatWidget() {
                 }`}
               >
                 <div
-                  className={`max-w-[82%] rounded-2xl p-3 text-xs sm:text-sm leading-relaxed shadow-sm ${
+                  className={`max-w-[85%] rounded-2xl p-2.5 text-xs leading-relaxed ${
                     msg.sender === 'user'
-                      ? 'bg-teal-700 text-white rounded-br-xs'
-                      : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200/80 dark:border-slate-700 rounded-bl-xs'
+                      ? 'bg-[#0F0F0F] text-white rounded-br-xs'
+                      : 'bg-[#F5F5F7] text-[#0F0F0F] border border-[#E5E5E5] rounded-bl-xs'
                   }`}
                 >
                   {msg.text}
                 </div>
-                <span className="text-[10px] text-slate-400 mt-1 px-1">
+                <span className="text-[9px] text-[#71717A] mt-0.5 px-1">
                   {msg.time}
                 </span>
               </div>
@@ -215,12 +210,12 @@ export function ChatWidget() {
 
             {/* Typing Indicator */}
             {isTyping && (
-              <div className="flex items-center gap-1.5 p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 w-fit">
-                <span className="w-1.5 h-1.5 rounded-full bg-teal-600 animate-bounce"></span>
-                <span className="w-1.5 h-1.5 rounded-full bg-teal-600 animate-bounce [animation-delay:0.2s]"></span>
-                <span className="w-1.5 h-1.5 rounded-full bg-teal-600 animate-bounce [animation-delay:0.4s]"></span>
-                <span className="text-[11px] text-slate-400 ml-1">
-                  {isNepali ? 'टाइप गर्दै...' : 'Typing reply...'}
+              <div className="flex items-center gap-1 p-2 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] w-fit">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0F0F0F] animate-bounce"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0F0F0F] animate-bounce [animation-delay:0.2s]"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0F0F0F] animate-bounce [animation-delay:0.4s]"></span>
+                <span className="text-[10px] text-[#71717A] ml-1">
+                  {isNepali ? 'टाइप गर्दै...' : 'Typing...'}
                 </span>
               </div>
             )}
@@ -230,22 +225,22 @@ export function ChatWidget() {
           {/* Input Form */}
           <form
             onSubmit={handleSend}
-            className="p-3 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2"
+            className="p-2.5 bg-white border-t border-[#E5E5E5] flex items-center gap-2"
           >
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={isNepali ? 'आफ्नो प्रश्न यहाँ लेख्नुहोस्...' : 'Ask about a property, rent, price...'}
-              className="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-600"
+              className="flex-1 px-3 py-2 rounded-xl border border-[#E5E5E5] bg-[#F5F5F7] text-xs text-[#0F0F0F] placeholder-[#71717A] focus:outline-none focus:border-[#0F0F0F]"
             />
             <button
               type="submit"
               disabled={!input.trim()}
-              className="p-2.5 rounded-xl bg-teal-700 hover:bg-teal-800 disabled:opacity-40 text-white transition-colors"
+              className="p-2 rounded-xl bg-[#0F0F0F] hover:bg-[#27272A] disabled:opacity-40 text-white transition-colors"
               aria-label="Send message"
             >
-              <Send className="w-4 h-4" />
+              <Send className="w-3.5 h-3.5" />
             </button>
           </form>
         </div>
@@ -255,6 +250,7 @@ export function ChatWidget() {
       <CallModal
         isOpen={isCallModalOpen}
         onClose={() => setIsCallModalOpen(false)}
+        propertyTitle="Himal Estates Advisory Broker"
       />
     </>
   );

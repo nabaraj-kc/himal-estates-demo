@@ -75,13 +75,13 @@ export function ListingDetailClient({ slug }: { slug: string }) {
 
   if (!listing) {
     return (
-      <div className="min-h-screen flex flex-col bg-slate-50">
+      <div className="min-h-screen flex flex-col bg-white">
         <Navbar />
         <main className="flex-1 flex items-center justify-center p-8">
           <div className="text-center">
-            <h2 className="text-xl font-bold text-slate-800">Property Not Found</h2>
-            <p className="text-xs text-slate-500 mt-2">The property listing you are looking for may have been rented, sold or moved.</p>
-            <Link href="/listings" className="mt-4 inline-block px-4 py-2 rounded-xl bg-teal-700 text-white text-xs font-semibold">
+            <h2 className="text-xl font-bold text-[#0F0F0F]">Property Not Found</h2>
+            <p className="text-xs text-[#71717A] mt-2">The property listing you are looking for may have been rented, sold or moved.</p>
+            <Link href="/listings" className="mt-4 inline-block px-4 py-2 rounded-xl bg-[#0F0F0F] text-white text-xs font-semibold hover:bg-[#27272A]">
               Browse All Listings
             </Link>
           </div>
@@ -136,7 +136,7 @@ export function ListingDetailClient({ slug }: { slug: string }) {
   )}`;
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50/50 dark:bg-slate-950">
+    <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -144,7 +144,7 @@ export function ListingDetailClient({ slug }: { slug: string }) {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 gap-3">
           <Link
             href="/listings"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-500 hover:text-teal-700 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#71717A] hover:text-[#0F0F0F] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>{isNepali ? 'सबै सूचीहरूमा फर्कनुहोस्' : 'Back to Listings'}</span>
@@ -155,19 +155,19 @@ export function ListingDetailClient({ slug }: { slug: string }) {
               onClick={handleFavorite}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold transition-all ${
                 isSaved
-                  ? 'bg-rose-50 border-rose-200 text-rose-600'
-                  : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
+                  ? 'bg-[#F5F5F7] border-[#E5E5E5] text-[#EF4444]'
+                  : 'bg-white border-[#E5E5E5] text-[#0F0F0F] hover:bg-[#F5F5F7]'
               }`}
             >
-              <Heart className={`w-4 h-4 ${isSaved ? 'fill-rose-600' : ''}`} />
+              <Heart className={`w-4 h-4 ${isSaved ? 'fill-[#EF4444] text-[#EF4444]' : 'text-[#71717A]'}`} />
               <span>{isSaved ? 'Saved' : 'Save'}</span>
             </button>
 
             <button
               onClick={handleShare}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 text-xs font-semibold transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[#E5E5E5] bg-white text-[#0F0F0F] hover:bg-[#F5F5F7] text-xs font-semibold transition-colors"
             >
-              <Share2 className="w-4 h-4" />
+              <Share2 className="w-4 h-4 text-[#71717A]" />
               <span>Share</span>
             </button>
           </div>
@@ -176,7 +176,7 @@ export function ListingDetailClient({ slug }: { slug: string }) {
         {/* Title & Badges Bar */}
         <div className="mb-6">
           <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-bold uppercase tracking-wider">
+            <span className="px-2.5 py-0.5 rounded-md bg-[#0F0F0F] text-white text-[11px] font-semibold uppercase tracking-wider">
               {listing.type === 'rent'
                 ? isNepali ? 'भाडामा' : 'For Rent'
                 : listing.type === 'sale'
@@ -185,39 +185,39 @@ export function ListingDetailClient({ slug }: { slug: string }) {
             </span>
 
             {listing.hotDeal && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-orange-600 text-white text-xs font-bold">
-                <Flame className="w-3.5 h-3.5 animate-pulse" />
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#F5F5F7] border border-[#E5E5E5] text-[#0F0F0F] text-[11px] font-semibold">
+                <Flame className="w-3.5 h-3.5" />
                 <span>{isNepali ? 'हट डिल' : 'Hot Deal'}</span>
               </span>
             )}
 
             {listing.featured && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-teal-800 text-teal-100 text-xs font-bold">
-                <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#F5F5F7] border border-[#E5E5E5] text-[#0F0F0F] text-[11px] font-semibold">
+                <Star className="w-3.5 h-3.5" />
                 <span>{isNepali ? 'विशेष' : 'Featured'}</span>
               </span>
             )}
 
             {listing.verified && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#F5F5F7] border border-[#E5E5E5] text-[#0F0F0F] text-[11px] font-semibold">
+                <ShieldCheck className="w-3.5 h-3.5" />
                 <span>{isNepali ? 'स्थलगत प्रमाणित' : 'Site Verified'}</span>
               </span>
             )}
           </div>
 
-          <h1 className="font-display font-extrabold text-2xl sm:text-4xl text-slate-900 dark:text-white tracking-tight">
+          <h1 className="font-extrabold text-2xl sm:text-3xl text-[#0F0F0F] tracking-tight">
             {isNepali && listing.titleNe ? listing.titleNe : listing.title}
           </h1>
 
-          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2">
-            <MapPin className="w-4 h-4 text-teal-600 flex-shrink-0" />
+          <div className="flex items-center gap-2 text-[#71717A] text-xs sm:text-sm mt-1.5">
+            <MapPin className="w-4 h-4 text-[#0F0F0F] flex-shrink-0" />
             <span>
               {listing.location.fullAddress ||
                 `${listing.location.tole || ''}, ${listing.location.city || ''}, ${listing.location.district}`}
             </span>
             {listing.location.landmark && (
-              <span className="text-slate-400">• Landmark: {listing.location.landmark}</span>
+              <span className="text-[#71717A]">• Landmark: {listing.location.landmark}</span>
             )}
           </div>
         </div>
@@ -296,7 +296,7 @@ export function ListingDetailClient({ slug }: { slug: string }) {
                   key={img.id}
                   onClick={() => setActivePhotoIdx(idx)}
                   className={`w-16 h-12 rounded-lg overflow-hidden border-2 flex-shrink-0 transition-all ${
-                    activePhotoIdx === idx ? 'border-teal-400 scale-105' : 'border-transparent opacity-60'
+                    activePhotoIdx === idx ? 'border-[#0F0F0F] scale-105' : 'border-transparent opacity-60'
                   }`}
                 >
                   <img src={img.url} alt="thumb" className="w-full h-full object-cover" />
@@ -309,27 +309,27 @@ export function ListingDetailClient({ slug }: { slug: string }) {
         {/* Details Grid (Left Content + Right Sticky Sidebar) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Main Details (8 cols) */}
-          <div className="lg:col-span-8 space-y-8">
+          <div className="lg:col-span-8 space-y-6">
             {/* Key Facts Ribbon */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/90 dark:border-slate-800 shadow-sm">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-100 dark:border-slate-800 gap-4">
+            <div className="bg-white rounded-2xl p-6 border border-[#E5E5E5]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-[#E5E5E5] gap-4">
                 <div>
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                  <span className="text-[11px] font-bold text-[#71717A] uppercase tracking-wider">
                     {isNepali ? 'मूल्य' : 'Price / Valuation'}
                   </span>
-                  <div className="font-display font-extrabold text-3xl sm:text-4xl text-teal-800 dark:text-teal-400 mt-1">
+                  <div className="font-extrabold text-3xl sm:text-4xl text-[#0F0F0F] mt-1">
                     {formatNPR(listing.price)}
                     {listing.priceType === 'perMonth' && (
-                      <span className="text-sm font-normal text-slate-500 ml-1">/month</span>
+                      <span className="text-sm font-normal text-[#71717A] ml-1">/month</span>
                     )}
                     {listing.priceType === 'perAana' && (
-                      <span className="text-sm font-normal text-slate-500 ml-1">/aana</span>
+                      <span className="text-sm font-normal text-[#71717A] ml-1">/aana</span>
                     )}
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-xs font-semibold">
+                  <span className="px-3 py-1 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-[#0F0F0F] text-xs font-semibold">
                     {listing.priceNegotiable
                       ? isNepali ? 'मुल्यमा छलफल हुन सक्ने' : 'Negotiable'
                       : 'Fixed Price'}
@@ -338,67 +338,67 @@ export function ListingDetailClient({ slug }: { slug: string }) {
               </div>
 
               {/* Grid of Key Specs */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 text-xs sm:text-sm">
-                <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
-                  <span className="text-slate-400 block text-[11px] mb-1">Area / Size</span>
-                  <div className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                    <Maximize2 className="w-4 h-4 text-teal-600" />
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-5 text-xs sm:text-sm">
+                <div className="p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5]">
+                  <span className="text-[#71717A] block text-[11px] mb-1">Area / Size</span>
+                  <div className="font-bold text-[#0F0F0F] flex items-center gap-1.5">
+                    <Maximize2 className="w-4 h-4 text-[#0F0F0F]" />
                     <span>{listing.area} {listing.areaUnit}</span>
                   </div>
                 </div>
 
                 {listing.bedrooms !== undefined && (
-                  <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
-                    <span className="text-slate-400 block text-[11px] mb-1">Bedrooms</span>
-                    <div className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                      <Bed className="w-4 h-4 text-teal-600" />
+                  <div className="p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5]">
+                    <span className="text-[#71717A] block text-[11px] mb-1">Bedrooms</span>
+                    <div className="font-bold text-[#0F0F0F] flex items-center gap-1.5">
+                      <Bed className="w-4 h-4 text-[#0F0F0F]" />
                       <span>{listing.bedrooms} Beds</span>
                     </div>
                   </div>
                 )}
 
                 {listing.bathrooms !== undefined && (
-                  <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
-                    <span className="text-slate-400 block text-[11px] mb-1">Bathrooms</span>
-                    <div className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                      <Bath className="w-4 h-4 text-teal-600" />
+                  <div className="p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5]">
+                    <span className="text-[#71717A] block text-[11px] mb-1">Bathrooms</span>
+                    <div className="font-bold text-[#0F0F0F] flex items-center gap-1.5">
+                      <Bath className="w-4 h-4 text-[#0F0F0F]" />
                       <span>{listing.bathrooms} Baths</span>
                     </div>
                   </div>
                 )}
 
                 {listing.facing && (
-                  <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
-                    <span className="text-slate-400 block text-[11px] mb-1">Facing</span>
-                    <div className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5 capitalize">
-                      <Compass className="w-4 h-4 text-teal-600" />
+                  <div className="p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5]">
+                    <span className="text-[#71717A] block text-[11px] mb-1">Facing</span>
+                    <div className="font-bold text-[#0F0F0F] flex items-center gap-1.5 capitalize">
+                      <Compass className="w-4 h-4 text-[#0F0F0F]" />
                       <span>{listing.facing}</span>
                     </div>
                   </div>
                 )}
 
                 {listing.roadWidth && (
-                  <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
-                    <span className="text-slate-400 block text-[11px] mb-1">Road Access</span>
-                    <div className="font-bold text-slate-900 dark:text-white">
+                  <div className="p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5]">
+                    <span className="text-[#71717A] block text-[11px] mb-1">Road Access</span>
+                    <div className="font-bold text-[#0F0F0F]">
                       {listing.roadWidth} ft ({listing.roadType || 'pitched'})
                     </div>
                   </div>
                 )}
 
                 {listing.condition && (
-                  <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
-                    <span className="text-slate-400 block text-[11px] mb-1">Condition</span>
-                    <div className="font-bold text-slate-900 dark:text-white capitalize">
+                  <div className="p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5]">
+                    <span className="text-[#71717A] block text-[11px] mb-1">Condition</span>
+                    <div className="font-bold text-[#0F0F0F] capitalize">
                       {listing.condition}
                     </div>
                   </div>
                 )}
 
                 {listing.builtYear && (
-                  <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
-                    <span className="text-slate-400 block text-[11px] mb-1">Built Year</span>
-                    <div className="font-bold text-slate-900 dark:text-white">
+                  <div className="p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5]">
+                    <span className="text-[#71717A] block text-[11px] mb-1">Built Year</span>
+                    <div className="font-bold text-[#0F0F0F]">
                       {listing.builtYear} A.D.
                     </div>
                   </div>
@@ -407,32 +407,32 @@ export function ListingDetailClient({ slug }: { slug: string }) {
             </div>
 
             {/* Description */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/90 dark:border-slate-800 shadow-sm space-y-4">
-              <h3 className="font-display font-bold text-xl text-slate-900 dark:text-white">
+            <div className="bg-white rounded-2xl p-6 border border-[#E5E5E5] space-y-4">
+              <h3 className="font-bold text-lg text-[#0F0F0F]">
                 {isNepali ? 'सम्पत्ति विवरण' : 'About This Property'}
               </h3>
 
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm text-[#0F0F0F] leading-relaxed">
                 {listing.description}
               </p>
 
               {listing.descriptionNe && (
-                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700 text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-devanagari">
-                  <span className="font-bold text-xs text-teal-700 block mb-1">नेपाली विवरण:</span>
+                <div className="p-4 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-sm text-[#0F0F0F] leading-relaxed">
+                  <span className="font-bold text-xs text-[#0F0F0F] block mb-1">नेपाली विवरण:</span>
                   {listing.descriptionNe}
                 </div>
               )}
 
               {/* Highlights */}
               {listing.highlights && listing.highlights.length > 0 && (
-                <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-                  <h4 className="font-bold text-xs uppercase tracking-wider text-slate-400 mb-3">
+                <div className="pt-4 border-t border-[#E5E5E5]">
+                  <h4 className="font-bold text-xs uppercase tracking-wider text-[#71717A] mb-3">
                     {isNepali ? 'प्रमुख आकर्षणहरू' : 'Key Highlights'}
                   </h4>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
                     {listing.highlights.map((h, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                      <li key={idx} className="flex items-center gap-2 text-[#0F0F0F]">
+                        <CheckCircle2 className="w-4 h-4 text-[#0F0F0F] flex-shrink-0" />
                         <span>{h}</span>
                       </li>
                     ))}
@@ -442,57 +442,57 @@ export function ListingDetailClient({ slug }: { slug: string }) {
             </div>
 
             {/* Facilities & Amenities */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/90 dark:border-slate-800 shadow-sm">
-              <h3 className="font-display font-bold text-xl text-slate-900 dark:text-white mb-6">
+            <div className="bg-white rounded-2xl p-6 border border-[#E5E5E5]">
+              <h3 className="font-bold text-lg text-[#0F0F0F] mb-4">
                 {isNepali ? 'उपलब्ध सुविधाहरू' : 'Facilities & Amenities'}
               </h3>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs sm:text-sm">
                 {listing.facilities?.water && (
-                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
-                    <Droplets className="w-4 h-4 text-teal-600" />
+                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-[#0F0F0F]">
+                    <Droplets className="w-4 h-4 text-[#0F0F0F]" />
                     <span>24/7 Water Supply</span>
                   </div>
                 )}
                 {listing.facilities?.electricity && (
-                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
-                    <Zap className="w-4 h-4 text-amber-500" />
+                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-[#0F0F0F]">
+                    <Zap className="w-4 h-4 text-[#0F0F0F]" />
                     <span>Electricity / Sub-meter</span>
                   </div>
                 )}
                 {listing.facilities?.internet && (
-                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
-                    <Wifi className="w-4 h-4 text-blue-500" />
+                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-[#0F0F0F]">
+                    <Wifi className="w-4 h-4 text-[#0F0F0F]" />
                     <span>High-Speed Fiber Net</span>
                   </div>
                 )}
                 {listing.facilities?.solar && (
-                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
-                    <Sun className="w-4 h-4 text-orange-500" />
+                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-[#0F0F0F]">
+                    <Sun className="w-4 h-4 text-[#0F0F0F]" />
                     <span>Solar Water Heating</span>
                   </div>
                 )}
                 {listing.facilities?.garage && (
-                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
-                    <Car className="w-4 h-4 text-teal-600" />
+                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-[#0F0F0F]">
+                    <Car className="w-4 h-4 text-[#0F0F0F]" />
                     <span>Parking Space</span>
                   </div>
                 )}
                 {listing.facilities?.garden && (
-                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
-                    <Trees className="w-4 h-4 text-emerald-600" />
+                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-[#0F0F0F]">
+                    <Trees className="w-4 h-4 text-[#0F0F0F]" />
                     <span>Private Garden / Lawn</span>
                   </div>
                 )}
                 {listing.facilities?.security && (
-                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
-                    <Shield className="w-4 h-4 text-purple-600" />
+                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-[#0F0F0F]">
+                    <Shield className="w-4 h-4 text-[#0F0F0F]" />
                     <span>24/7 Security & CCTV</span>
                   </div>
                 )}
                 {listing.facilities?.lift && (
-                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
-                    <CheckCircle2 className="w-4 h-4 text-teal-600" />
+                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-[#0F0F0F]">
+                    <CheckCircle2 className="w-4 h-4 text-[#0F0F0F]" />
                     <span>Elevator / Lift</span>
                   </div>
                 )}
@@ -501,14 +501,14 @@ export function ListingDetailClient({ slug }: { slug: string }) {
 
             {/* Location Map Section */}
             {listing.location.mapLat && listing.location.mapLng && (
-              <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/90 dark:border-slate-800 shadow-sm space-y-4">
+              <div className="bg-white rounded-2xl p-6 border border-[#E5E5E5] space-y-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-display font-bold text-xl text-slate-900 dark:text-white">
+                  <h3 className="font-bold text-lg text-[#0F0F0F]">
                     {isNepali ? 'नक्सामा स्थान' : 'Property Location'}
                   </h3>
-                  <span className="text-xs text-slate-500">OpenStreetMap</span>
+                  <span className="text-xs text-[#71717A]">OpenStreetMap</span>
                 </div>
-                <div className="h-[360px] rounded-2xl overflow-hidden border border-slate-200">
+                <div className="h-[340px] rounded-xl overflow-hidden border border-[#E5E5E5]">
                   <ListingMap
                     listings={[listing]}
                     center={[listing.location.mapLat, listing.location.mapLng]}
@@ -522,27 +522,27 @@ export function ListingDetailClient({ slug }: { slug: string }) {
           {/* Right Sticky Contact & Middleman Action Bar (4 cols) */}
           <div className="lg:col-span-4 space-y-6">
             {/* Middleman Authority Box */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200/90 dark:border-slate-800 shadow-sm sticky top-24">
-              <div className="flex items-center gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
-                <div className="w-12 h-12 rounded-2xl bg-teal-700 text-white font-bold flex items-center justify-center text-lg">
+            <div className="bg-white rounded-2xl p-5 border border-[#E5E5E5] sticky top-24">
+              <div className="flex items-center gap-3 pb-4 border-b border-[#E5E5E5]">
+                <div className="w-11 h-11 rounded-xl bg-[#0F0F0F] text-white font-bold flex items-center justify-center text-sm">
                   HE
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-sm text-slate-900 dark:text-white">
+                  <h4 className="font-bold text-sm text-[#0F0F0F]">
                     Himal Estates Advisory
                   </h4>
-                  <p className="text-xs text-teal-700 font-semibold flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5" />
-                    <span>Verified Middleman Broker</span>
+                  <p className="text-xs text-[#71717A] flex items-center gap-1 mt-0.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#0F0F0F]" />
+                    <span>Verified Broker Advisor</span>
                   </p>
                 </div>
               </div>
 
               {/* Direct Actions: Message Agent & Call Agent */}
-              <div className="py-4 space-y-2.5">
+              <div className="py-4 space-y-2">
                 <Link
                   href={`/inbox?listingId=${listing.id}`}
-                  className="w-full py-3 px-4 rounded-lg bg-teal-800 hover:bg-teal-900 text-white font-semibold text-sm shadow-sm flex items-center justify-center gap-2 transition-all active:scale-95"
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#0F0F0F] hover:bg-[#27272A] text-white font-semibold text-xs shadow-xs flex items-center justify-center gap-2 transition-all"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>{isNepali ? 'एजेन्टलाई सन्देश पठाउनुहोस्' : 'Message Agent'}</span>
@@ -550,29 +550,29 @@ export function ListingDetailClient({ slug }: { slug: string }) {
 
                 <a
                   href={`tel:${brand.mobile}`}
-                  className="w-full py-3 px-4 rounded-lg border border-gray-300 bg-white hover:bg-gray-50 text-[#111827] font-semibold text-sm flex items-center justify-center gap-2 transition-all active:scale-95"
+                  className="w-full py-2.5 px-4 rounded-xl border border-[#E5E5E5] bg-[#F5F5F7] hover:bg-[#E5E5E5] text-[#0F0F0F] font-semibold text-xs flex items-center justify-center gap-2 transition-all"
                 >
-                  <Phone className="w-4 h-4 text-teal-800" />
+                  <Phone className="w-4 h-4 text-[#0F0F0F]" />
                   <span>{isNepali ? 'एजेन्टलाई सिधै कल गर्नुहोस्' : 'Call Agent'}</span>
                 </a>
               </div>
 
               {/* Inquiry Form */}
-              <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-                <h4 className="font-bold text-xs uppercase tracking-wider text-slate-400 mb-3">
+              <div className="pt-4 border-t border-[#E5E5E5]">
+                <h4 className="font-bold text-xs uppercase tracking-wider text-[#71717A] mb-3">
                   {isNepali ? 'स्थलगत भ्रमणको लागि सोधपुछ' : 'Request Site Inspection'}
                 </h4>
 
                 {inqSubmitted ? (
-                  <div className="p-4 rounded-2xl bg-emerald-50 text-emerald-800 text-xs space-y-2 border border-emerald-200">
-                    <div className="flex items-center gap-1.5 font-bold text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <div className="p-4 rounded-xl bg-[#F5F5F7] text-[#0F0F0F] text-xs space-y-1.5 border border-[#E5E5E5]">
+                    <div className="flex items-center gap-1.5 font-bold text-xs text-[#0F0F0F]">
+                      <CheckCircle2 className="w-4 h-4 text-[#0F0F0F]" />
                       <span>Inquiry Sent Successfully!</span>
                     </div>
-                    <p>Our Kathmandu advisory broker will reach out to you within 15 minutes.</p>
+                    <p className="text-[#71717A]">Our advisory broker will reach out to you within 15 minutes.</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleInquirySubmit} className="space-y-3">
+                  <form onSubmit={handleInquirySubmit} className="space-y-2.5">
                     <div>
                       <input
                         type="text"
@@ -580,7 +580,7 @@ export function ListingDetailClient({ slug }: { slug: string }) {
                         value={inqName}
                         onChange={(e) => setInqName(e.target.value)}
                         placeholder="Your Full Name"
-                        className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-teal-600 focus:outline-none"
+                        className="w-full px-3 py-2 rounded-xl border border-[#E5E5E5] bg-[#F5F5F7] text-xs text-[#0F0F0F] focus:outline-none focus:border-[#0F0F0F]"
                       />
                     </div>
                     <div>
@@ -590,7 +590,7 @@ export function ListingDetailClient({ slug }: { slug: string }) {
                         value={inqPhone}
                         onChange={(e) => setInqPhone(e.target.value)}
                         placeholder="Phone or WhatsApp (98XXXXXXXX)"
-                        className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-teal-600 focus:outline-none"
+                        className="w-full px-3 py-2 rounded-xl border border-[#E5E5E5] bg-[#F5F5F7] text-xs text-[#0F0F0F] focus:outline-none focus:border-[#0F0F0F]"
                       />
                     </div>
                     <div>
@@ -599,13 +599,13 @@ export function ListingDetailClient({ slug }: { slug: string }) {
                         value={inqMessage}
                         onChange={(e) => setInqMessage(e.target.value)}
                         placeholder="Preferred date/time for visit or specific questions..."
-                        className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-teal-600 focus:outline-none"
+                        className="w-full px-3 py-2 rounded-xl border border-[#E5E5E5] bg-[#F5F5F7] text-xs text-[#0F0F0F] focus:outline-none focus:border-[#0F0F0F]"
                       ></textarea>
                     </div>
                     <button
                       type="submit"
                       disabled={inqLoading}
-                      className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5"
+                      className="w-full py-2.5 px-4 rounded-xl bg-[#0F0F0F] hover:bg-[#27272A] text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5"
                     >
                       <Send className="w-3.5 h-3.5" />
                       <span>{inqLoading ? 'Submitting...' : 'Send Inquiry to Broker'}</span>
@@ -615,9 +615,9 @@ export function ListingDetailClient({ slug }: { slug: string }) {
               </div>
 
               {/* Middleman Trust Seal */}
-              <div className="mt-5 p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 text-[11px] text-slate-500 space-y-1.5">
-                <div className="flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300">
-                  <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
+              <div className="mt-4 p-3 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-[11px] text-[#71717A] space-y-1">
+                <div className="flex items-center gap-1 font-semibold text-[#0F0F0F]">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#0F0F0F]" />
                   <span>Himal Estates Guarantee</span>
                 </div>
                 <p>Transparent 2% brokerage rate upon deal completion. Full title deed & boundary check support.</p>

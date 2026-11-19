@@ -69,14 +69,14 @@ export function ListingMap({
           className: 'custom-map-marker',
           html: `
             <div style="
-              background-color: ${isSelected ? '#0F766E' : '#0F172A'};
+              background-color: ${isSelected ? '#0F0F0F' : '#27272A'};
               color: white;
               padding: 4px 8px;
               border-radius: 9999px;
               font-size: 11px;
               font-weight: 700;
               box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
-              border: 2px solid ${isSelected ? '#F97316' : '#FFFFFF'};
+              border: 2px solid ${isSelected ? '#0F0F0F' : '#FFFFFF'};
               white-space: nowrap;
               cursor: pointer;
               transform: translate(-50%, -50%);
@@ -98,19 +98,19 @@ export function ListingMap({
         const popupContent = `
           <div style="width: 200px; font-family: inherit; padding: 2px;">
             ${imgUrl ? `<img src="${imgUrl}" style="width: 100%; height: 110px; object-fit: cover; border-radius: 8px; margin-bottom: 6px;" />` : ''}
-            <div style="font-weight: 700; font-size: 13px; color: #0F172A; line-height: 1.2; margin-bottom: 4px;">
+            <div style="font-weight: 700; font-size: 13px; color: #0F0F0F; line-height: 1.2; margin-bottom: 4px;">
               ${listing.title}
             </div>
-            <div style="color: #0F766E; font-weight: 800; font-size: 13px; margin-bottom: 4px;">
+            <div style="color: #0F0F0F; font-weight: 800; font-size: 13px; margin-bottom: 4px;">
               ${priceLabel}
             </div>
-            <div style="font-size: 11px; color: #64748B; margin-bottom: 8px;">
+            <div style="font-size: 11px; color: #71717A; margin-bottom: 8px;">
               📍 ${listing.location.tole || ''} ${listing.location.district || listing.location.city}
             </div>
             <a href="/listings/${listing.slug || listing.id}" style="
               display: block;
               text-align: center;
-              background-color: #0F766E;
+              background-color: #0F0F0F;
               color: white;
               padding: 6px 12px;
               border-radius: 6px;
@@ -118,7 +118,7 @@ export function ListingMap({
               font-weight: 600;
               text-decoration: none;
             ">
-              View Property Details
+              View Details
             </a>
           </div>
         `;
@@ -144,7 +144,7 @@ export function ListingMap({
     return (
       <div className={`${className} bg-slate-100 dark:bg-slate-800 animate-pulse flex items-center justify-center text-slate-400 text-xs`}>
         <div className="flex items-center gap-2">
-          <Navigation className="w-4 h-4 text-teal-600 animate-spin" />
+          <Navigation className="w-4 h-4 text-[#0F0F0F] animate-spin" />
           <span>Loading Nepal Property Map...</span>
         </div>
       </div>

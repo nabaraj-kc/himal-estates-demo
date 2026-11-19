@@ -51,12 +51,10 @@ export function Logo({
 
   const taglineColor =
     theme === 'dark'
-      ? 'text-teal-200/80'
-      : theme === 'light'
-      ? 'text-slate-500'
-      : 'text-slate-500 dark:text-teal-200/80';
+      ? 'text-zinc-400'
+      : 'text-[#71717A]';
 
-  // The Monogram SVG: Modern geometric 'H' with ascending peak angles and architectural lines
+  // The Monogram SVG: Modern geometric 'H' with architectural lines in monochrome Ink Black
   const MonogramSVG = (
     <svg
       viewBox="0 0 44 44"
@@ -65,40 +63,29 @@ export function Logo({
       className={`${iconSizes[size]} flex-shrink-0 transition-transform duration-300 group-hover:scale-105`}
       aria-label="Himal Estates Monogram"
     >
-      <defs>
-        <linearGradient id="himalTealGrad" x1="4" y1="4" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0F766E" />
-          <stop offset="1" stopColor="#14B8A6" />
-        </linearGradient>
-        <linearGradient id="himalTerracottaGrad" x1="22" y1="8" x2="40" y2="36" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#EA580C" />
-          <stop offset="1" stopColor="#C2410C" />
-        </linearGradient>
-      </defs>
-
       {/* Rounded backdrop shield */}
-      <rect width="44" height="44" rx="12" fill="currentColor" className="text-teal-950/10 dark:text-white/10" />
+      <rect width="44" height="44" rx="10" fill="#0F0F0F" />
 
       {/* Left Pillar of 'H' */}
       <path
-        d="M11 11H17V33H11V11Z"
-        fill="url(#himalTealGrad)"
+        d="M12 11H17V33H12V11Z"
+        fill="#FFFFFF"
       />
 
-      {/* Crossbar & Ascending Ridge connecting to right side */}
+      {/* Crossbar & Ascending Ridge */}
       <path
-        d="M17 21L27 13V19L17 27V21Z"
-        fill="url(#himalTerracottaGrad)"
+        d="M17 21L27 14V19L17 26V21Z"
+        fill="#E5E5E5"
       />
 
       {/* Right Pillar of 'H' with geometric peak top */}
       <path
-        d="M27 13L33 8V33H27V13Z"
-        fill="url(#himalTealGrad)"
+        d="M27 14L32 10V33H27V14Z"
+        fill="#FFFFFF"
       />
 
-      {/* Subtle architectural foundation accent */}
-      <circle cx="22" cy="32" r="2" fill="#C2410C" />
+      {/* Clean architectural foundation dot */}
+      <circle cx="22" cy="31" r="1.75" fill="#FFFFFF" />
     </svg>
   );
 
@@ -135,7 +122,7 @@ export function Logo({
 
   if (href) {
     return (
-      <Link href={href} className="focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 rounded-lg">
+      <Link href={href} className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0F0F0F] rounded-lg">
         {content}
       </Link>
     );

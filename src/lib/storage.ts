@@ -1,4 +1,4 @@
-import { Listing, Inquiry, Deal, Conversation, InboxMessage } from '@/types';
+import { Listing, Inquiry, Deal, Conversation, InboxMessage, AppNotification } from '@/types';
 import { mockListings, mockCategories } from '@/data/mock-listings';
 import { mockInquiries, mockDeals, mockSellerSubmissions, SellerSubmission } from '@/data/mock-admin-data';
 import { mockConversations } from '@/data/mock-inbox-data';
@@ -11,6 +11,7 @@ const STORAGE_KEYS = {
   SUBMISSIONS: 'himal_estates_submissions_v1',
   FAVORITES: 'himal_estates_favorites_v1',
   CONVERSATIONS: 'himal_estates_conversations_v1',
+  NOTIFICATIONS: 'himal_estates_notifications_v1',
   LANGUAGE: 'himal_estates_language_v1',
 } as const;
 
@@ -420,6 +421,75 @@ export function markConversationRead(conversationId: string): void {
 }
 
 // -------------------------------------------------------------
+// NOTIFICATIONS SERVICE
+// -------------------------------------------------------------
+
+const initialNotifications: AppNotification[] = [
+  {
+    id: 'notif-1',
+    type: 'price_drop',
+    title: 'Price Drop on Saved Flat',
+    titleNe: 'सुरक्षित फ्ल्याटको मूल्य घट्यो',
+    description: '2BHK in Lazimpat has dropped to NPR 45,000/month (previously NPR 50,000).',
+    descriptionNe: 'लाजिम्पाटको २ बीएचके फ्ल्याटको भाडा घटेर रु ४५,०००/महिना भएको छ।',
+    timestamp: new Date(Date.now() - 1000 * 60 * 35).toISOString(),
+    isRead: false,
+    linkUrl: '/listings/spacious-2bhk-flat-lazimpat',
+  },
+  {
+    id: 'notif-2',
+    type: 'message',
+    title: 'New Reply from Broker Suman',
+    titleNe: 'ब्रोकर सुमनबाट नयाँ सन्देश',
+    description: '“The landlord is available tomorrow at 3:30 PM for on-site visit...”',
+    descriptionNe: '“घरधनी भोलि दिउँसो ३:३० बजे स्थलगत भ्रमणको लागि उपलब्ध हुनुहुन्छ...”',
+    timestamp: new Date(Date.now() - 1000 * 60 * 85).toISOString(),
+    isRead: false,
+    linkUrl: '/inbox',
+  },
+  {
+    id: 'notif-3',
+    type: 'approval',
+    title: 'Lalpurja & Napi Check Completed',
+    titleNe: 'लालपुर्जा तथा नापी नक्सा प्रमाणित',
+    description: '4 Aana Land in Tikathali Imadol has passed 100% legal encumbrance audit.',
+    descriptionNe: 'टिकाथली इमाडोलको ४ आना घडेरी १००% कानुनी रोक्कामुक्त प्रमाणित भएको छ।',
+    timestamp: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString(),
+    isRead: true,
+    linkUrl: '/listings/prime-4-aana-residential-plot-imadol',
+  },
+];
+
+export function getNotifications(): AppNotification[] {
+  return getItem<AppNotification[]>(STORAGE_KEYS.NOTIFICATIONS, initialNotifications);
+}
+
+export function getUnreadNotificationsCount(): number {
+  const notifs = getNotifications();
+  return notifs.filter((n) => !n.isRead).length;
+}
+
+export function markNotificationRead(id: string): void {
+  const notifs = getNotifications();
+  const index = notifs.findIndex((n) => n.id === id);
+  if (index === -1) return;
+
+  notifs[index].isRead = true;
+  setItem(STORAGE_KEYS.NOTIFICATIONS, notifs);
+  if (isClient()) {
+    window.dispatchEvent(new CustomEvent('himal_notifications_changed'));
+  }
+}
+
+export function markAllNotificationsRead(): void {
+  const notifs = getNotifications().map((n) => ({ ...n, isRead: true }));
+  setItem(STORAGE_KEYS.NOTIFICATIONS, notifs);
+  if (isClient()) {
+    window.dispatchEvent(new CustomEvent('himal_notifications_changed'));
+  }
+}
+
+// -------------------------------------------------------------
 // RESET ALL DEMO DATA
 // -------------------------------------------------------------
 
@@ -431,6 +501,8 @@ export function resetDemoData(): void {
   localStorage.setItem(STORAGE_KEYS.SUBMISSIONS, JSON.stringify(mockSellerSubmissions));
   localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify(['list-001', 'list-006']));
   localStorage.setItem(STORAGE_KEYS.CONVERSATIONS, JSON.stringify(mockConversations));
+  localStorage.setItem(STORAGE_KEYS.NOTIFICATIONS, JSON.stringify(initialNotifications));
   window.dispatchEvent(new CustomEvent('himal_data_reset'));
   window.dispatchEvent(new CustomEvent('himal_conversations_changed'));
+  window.dispatchEvent(new CustomEvent('himal_notifications_changed'));
 }
