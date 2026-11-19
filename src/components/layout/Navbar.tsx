@@ -76,31 +76,32 @@ export function Navbar() {
       </div>
 
       {/* Main Bar */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-3 h-14 sm:h-16">
-          {/* Logo (plain dark text, no extra tagline clutter) */}
-          <div className="flex-shrink-0">
-            <Logo size="sm" showTagline={false} />
+      <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="w-full max-w-full flex items-center justify-between gap-2 h-14 sm:h-16">
+          {/* Logo (compact icon-only on mobile, full text on desktop) */}
+          <div className="shrink-0 flex items-center">
+            <Logo size="sm" showTagline={false} className="hidden sm:inline-flex" />
+            <Logo variant="monogram" size="sm" className="sm:hidden" />
           </div>
 
           {/* Search Input (Soft Off-White #F5F5F7, border #E5E5E5) */}
           <form
             onSubmit={handleSearchSubmit}
-            className="flex-1 max-w-xl mx-2 relative flex items-center"
+            className="flex-1 min-w-0 max-w-xl mx-1 sm:mx-2 relative flex items-center"
           >
-            <div className="relative w-full">
+            <div className="relative w-full min-w-0">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={
                   isNepali
-                    ? 'काठमाडौं, ललितपुर वा पोखरामा फ्ल्याट, जग्गा खोज्नुहोस्...'
-                    : 'Search flats, land, houses in Kathmandu, Lalitpur, Pokhara...'
+                    ? 'खोज्नुहोस् (फ्ल्याट, घर, जग्गा)...'
+                    : 'Search flats, land, houses in Kathmandu...'
                 }
-                className="w-full pl-9 pr-9 sm:pr-20 py-2 text-xs sm:text-sm bg-[#F5F5F7] border border-[#E5E5E5] rounded-lg text-[#0F0F0F] placeholder:text-[#71717A] focus:outline-none focus:ring-1 focus:ring-[#0F0F0F] focus:bg-white transition-all"
+                className="w-full pl-8 sm:pl-9 pr-3 sm:pr-20 py-2 text-xs sm:text-sm bg-[#F5F5F7] border border-[#E5E5E5] rounded-lg text-[#0F0F0F] placeholder:text-[#71717A] focus:outline-none focus:ring-1 focus:ring-[#0F0F0F] focus:bg-white transition-all truncate"
               />
-              <Search className="w-4 h-4 text-[#71717A] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#71717A] absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               <button
                 type="submit"
                 className="hidden sm:inline-block absolute right-1.5 top-1/2 -translate-y-1/2 px-2.5 py-1 rounded bg-[#0F0F0F] hover:bg-[#27272A] text-white text-xs font-semibold transition-colors"
@@ -111,11 +112,11 @@ export function Navbar() {
           </form>
 
           {/* Right Action Icons */}
-          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
             {/* Language Switcher */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-1 px-2 py-1 rounded text-xs font-medium text-[#71717A] hover:text-[#0F0F0F] hover:bg-[#F5F5F7] transition-colors"
+              className="flex items-center gap-1 px-1.5 sm:px-2 py-1 rounded text-xs font-medium text-[#71717A] hover:text-[#0F0F0F] hover:bg-[#F5F5F7] transition-colors"
               title="Toggle English / नेपाली"
               aria-label="Toggle language"
             >
@@ -126,7 +127,7 @@ export function Navbar() {
             {/* Saved Properties */}
             <Link
               href="/saved"
-              className="relative p-2 rounded-lg text-[#71717A] hover:text-[#0F0F0F] hover:bg-[#F5F5F7] transition-colors"
+              className="relative p-1.5 sm:p-2 rounded-lg text-[#71717A] hover:text-[#0F0F0F] hover:bg-[#F5F5F7] transition-colors"
               title="Saved Properties"
               aria-label="Saved properties"
             >
@@ -141,13 +142,13 @@ export function Navbar() {
             {/* Client-Agent Inbox (MessageCircle next to search bar) */}
             <Link
               href="/inbox"
-              className="relative p-2 rounded-lg text-[#71717A] hover:text-[#0F0F0F] hover:bg-[#F5F5F7] transition-colors"
+              className="relative p-1.5 sm:p-2 rounded-lg text-[#71717A] hover:text-[#0F0F0F] hover:bg-[#F5F5F7] transition-colors"
               title="Client-Agent Inbox"
               aria-label="Inbox"
             >
               <MessageCircle className="w-5 h-5" strokeWidth={1.75} />
               {unreadCount > 0 && (
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#EF4444] ring-2 ring-white" />
+                <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#EF4444] ring-2 ring-white" />
               )}
             </Link>
 

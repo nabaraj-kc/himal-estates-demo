@@ -31,11 +31,11 @@ export default function SavedPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white w-full max-w-full overflow-x-hidden">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E5E5E5] gap-4">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 min-w-0">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E5E5E5] gap-3">
           <div>
             <h1 className="font-extrabold text-2xl text-[#0F0F0F] tracking-tight">
               {isNepali ? 'सुरक्षित गरिएका सम्पत्तिहरू' : 'Saved Properties'}
@@ -60,7 +60,7 @@ export default function SavedPage() {
         {/* Content */}
         <div className="mt-6">
           {isLoading ? (
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 w-full max-w-full min-w-0">
               {[1, 2, 3, 4].map((n) => (
                 <div key={n} className="rounded-xl bg-white p-3 border border-[#E5E5E5] animate-pulse space-y-3">
                   <div className="aspect-[16/10] bg-[#F5F5F7] rounded-lg"></div>
@@ -91,7 +91,7 @@ export default function SavedPage() {
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 w-full max-w-full min-w-0">
               {savedListings.map((listing) => (
                 <ListingCard key={listing.id} listing={listing} />
               ))}

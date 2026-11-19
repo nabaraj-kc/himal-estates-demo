@@ -130,7 +130,7 @@ export function ChatWidget() {
 
       {/* Chat Window Panel */}
       {isOpen && (
-        <div className="fixed bottom-20 sm:bottom-5 right-4 sm:right-5 z-50 w-[92vw] sm:w-[360px] h-[480px] max-h-[80vh] rounded-2xl bg-white border border-[#E5E5E5] shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-200">
+        <div className="fixed bottom-20 sm:bottom-5 right-3 sm:right-5 z-50 w-[calc(100vw-1.5rem)] sm:w-[360px] max-w-[360px] h-[480px] max-h-[80vh] rounded-2xl bg-white border border-[#E5E5E5] shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-200">
           {/* Header */}
           <div className="bg-[#0F0F0F] p-3.5 text-white flex items-center justify-between">
             <div className="flex items-center gap-2.5">

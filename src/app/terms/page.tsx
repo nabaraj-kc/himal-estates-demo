@@ -6,9 +6,9 @@ import { brand } from '@/config/brand';
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50/50">
+    <div className="min-h-screen flex flex-col bg-white w-full max-w-full overflow-x-hidden">
       <Navbar />
-      <main className="flex-1 max-w-4xl mx-auto px-4 py-12 sm:py-16">
+      <main className="flex-1 max-w-4xl w-full mx-auto px-3 sm:px-6 py-6 sm:py-16 min-w-0">
         <div className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm space-y-6 text-sm text-slate-700 leading-relaxed">
           <h1 className="font-display font-extrabold text-2xl sm:text-3xl text-slate-900">
             Terms of Service

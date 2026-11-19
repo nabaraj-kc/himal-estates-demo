@@ -1,9 +1,15 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Plus_Jakarta_Sans, Noto_Sans_Devanagari } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { brand } from '@/config/brand';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+};
 
 const inter = Inter({
   subsets: ['latin'],
@@ -61,11 +67,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${plusJakartaSans.variable} ${notoSansDevanagari.variable} h-full scroll-smooth antialiased`}
+      className={`${inter.variable} ${plusJakartaSans.variable} ${notoSansDevanagari.variable} h-full scroll-smooth antialiased w-full max-w-[100vw] overflow-x-hidden`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-white text-[#0F0F0F] overflow-x-hidden selection:bg-[#0F0F0F] selection:text-white pb-20 md:pb-0">
+      <body className="min-h-full flex flex-col font-sans bg-white text-[#0F0F0F] w-full max-w-[100vw] overflow-x-hidden selection:bg-[#0F0F0F] selection:text-white pb-20 md:pb-0">
         <LanguageProvider>
-          {children}
+          <div className="w-full max-w-full overflow-x-hidden flex flex-col flex-1 min-h-0">
+            {children}
+          </div>
           <BottomNav />
         </LanguageProvider>
       </body>

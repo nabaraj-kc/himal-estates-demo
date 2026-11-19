@@ -49,8 +49,8 @@ export function CategoryGrid() {
   ];
 
   return (
-    <section className="py-6 sm:py-8 bg-[#F5F5F7] border-t border-[#E5E5E5]">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+    <section className="py-6 sm:py-8 bg-[#F5F5F7] border-t border-[#E5E5E5] w-full max-w-full overflow-x-hidden">
+      <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 min-w-0">
         <div className="mb-4 pb-2 border-b border-[#E5E5E5] flex items-center justify-between">
           <h2 className="font-bold text-sm sm:text-base text-[#0F0F0F]">
             {isNepali ? 'श्रेणी अनुसार खोज्नुहोस्' : 'Explore by Category'}

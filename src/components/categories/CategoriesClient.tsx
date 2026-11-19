@@ -121,10 +121,10 @@ export function CategoriesClient() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#0F0F0F]">
+    <div className="min-h-screen flex flex-col bg-white text-[#0F0F0F] w-full max-w-full overflow-x-hidden">
       <Navbar />
 
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      <main className="flex-1 max-w-4xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-10 min-w-0">
         {/* Header */}
         <div className="pb-4 mb-6 border-b border-[#E5E5E5] flex items-center justify-between">
           <div className="flex items-center gap-2.5">

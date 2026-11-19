@@ -105,10 +105,10 @@ export default function ListPropertyPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white w-full max-w-full overflow-x-hidden">
       <Navbar />
 
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+      <main className="flex-1 max-w-4xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-10 min-w-0">
         {/* Top Header */}
         <div className="text-center max-w-xl mx-auto mb-8">
           <h1 className="font-extrabold text-2xl sm:text-3xl text-[#0F0F0F] tracking-tight">
@@ -163,7 +163,7 @@ export default function ListPropertyPage() {
           </div>
         ) : (
           /* Multi-Step Wizard */
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#E5E5E5]">
+          <div className="bg-white rounded-2xl p-4 sm:p-8 border border-[#E5E5E5] w-full max-w-full min-w-0">
             {/* Step Indicator */}
             <div className="flex items-center justify-between pb-5 mb-6 border-b border-[#E5E5E5]">
               {[

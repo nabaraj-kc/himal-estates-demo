@@ -11,10 +11,10 @@ export default function AboutPage() {
   const { isNepali } = useLanguage();
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white w-full max-w-full overflow-x-hidden">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-12 min-w-0">
         {/* Hero Section */}
         <div className="max-w-2xl mx-auto text-center mb-10">
           <h1 className="font-extrabold text-2xl sm:text-4xl text-[#0F0F0F] tracking-tight">

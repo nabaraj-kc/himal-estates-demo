@@ -136,10 +136,10 @@ export function ListingDetailClient({ slug }: { slug: string }) {
   )}`;
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white w-full max-w-full overflow-x-hidden">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 min-w-0">
         {/* Top Breadcrumb & Actions */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 gap-3">
           <Link
@@ -632,7 +632,7 @@ export function ListingDetailClient({ slug }: { slug: string }) {
             <h3 className="font-bold text-base sm:text-lg text-[#111827] mb-4">
               {isNepali ? 'सम्बन्धित अन्य सम्पत्तिहरू' : 'Similar Properties in Nepal'}
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 w-full max-w-full min-w-0">
               {similarListings.map((sim) => (
                 <ListingCard key={sim.id} listing={sim} />
               ))}

@@ -138,29 +138,29 @@ export function InboxClient() {
   });
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#111827]">
+    <div className="min-h-screen flex flex-col bg-white text-[#0F0F0F] w-full max-w-full overflow-x-hidden">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 min-w-0">
         {/* Breadcrumb / Status header */}
-        <div className="flex items-center justify-between pb-4 border-b border-gray-200 mb-4">
+        <div className="flex items-center justify-between pb-4 border-b border-[#E5E5E5] mb-4">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-[#111827] tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-[#0F0F0F] tracking-tight">
               {isNepali ? 'इन्बक्स तथा सन्देशहरू' : 'Client-Agent Inbox'}
             </h1>
-            <p className="text-xs text-gray-500 mt-0.5">
+            <p className="text-xs text-[#71717A] mt-0.5">
               {isNepali
                 ? 'प्रमाणित ब्रोकरहरूसँग सिधै सन्देश आदानप्रदान वा फोन कल गर्नुहोस्'
                 : 'Direct verified chat & instant phone calls with assigned middleman brokers'}
             </p>
           </div>
-          <div className="text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+          <div className="text-xs font-medium text-[#71717A] bg-[#F5F5F7] px-3 py-1 rounded-full">
             {conversations.length} {isNepali ? 'कुराकानीहरू' : 'Conversations'}
           </div>
         </div>
 
         {/* 2-Column Inbox Container */}
-        <div className="grid grid-cols-1 md:grid-cols-12 border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm min-h-[620px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 border border-[#E5E5E5] rounded-xl overflow-hidden bg-white shadow-sm min-h-[620px] w-full max-w-full min-w-0">
           {/* LEFT COLUMN: Conversation List (Visible on desktop, or on mobile when no conversation is selected) */}
           <div
             className={`md:col-span-4 lg:col-span-4 border-r border-gray-200 flex flex-col ${
@@ -387,7 +387,7 @@ export function InboxClient() {
                 {/* 5. Message Composer */}
                 <form
                   onSubmit={handleSendMessage}
-                  className="p-3 bg-white border-t border-[#E5E5E5] flex items-center gap-2"
+                  className="p-3 bg-white border-t border-[#E5E5E5] flex items-center gap-2 w-full max-w-full min-w-0"
                 >
                   <input
                     type="text"
@@ -398,7 +398,7 @@ export function InboxClient() {
                         ? 'एजेन्टलाई सन्देश लेख्नुहोस् (स्थलगत भ्रमण, मूल्य, कागजात...)'
                         : 'Write your message to the agent (site visit, price, docs...)'
                     }
-                    className="flex-1 px-3.5 py-2.5 text-xs sm:text-sm bg-[#F5F5F7] border border-[#E5E5E5] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#0F0F0F] focus:bg-white text-[#0F0F0F]"
+                    className="flex-1 min-w-0 px-3.5 py-2.5 text-xs sm:text-sm bg-[#F5F5F7] border border-[#E5E5E5] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#0F0F0F] focus:bg-white text-[#0F0F0F]"
                   />
                   <button
                     type="submit"

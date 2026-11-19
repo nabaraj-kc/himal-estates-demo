@@ -21,9 +21,9 @@ export function HomeTopBar({ activeFilter, onFilterChange }: HomeTopBarProps) {
   ];
 
   return (
-    <div className="bg-white border-b border-[#E5E5E5] sticky top-14 sm:top-16 z-30">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-6 overflow-x-auto no-scrollbar scroll-smooth">
+    <div className="bg-white border-b border-[#E5E5E5] sticky top-14 sm:top-16 z-30 w-full max-w-full overflow-x-hidden">
+      <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 min-w-0">
+        <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth w-full max-w-full min-w-0">
           {filterTabs.map((tab) => {
             const isActive = activeFilter === tab.id;
             return (

@@ -16,9 +16,9 @@ export function Footer() {
   const { isNepali } = useLanguage();
 
   return (
-    <footer className="bg-white text-[#71717A] border-t border-[#E5E5E5] pt-8 pb-24 md:pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-8 pb-8 border-b border-[#E5E5E5]">
+    <footer className="bg-white text-[#71717A] border-t border-[#E5E5E5] pt-8 pb-24 md:pb-12 w-full max-w-full overflow-x-hidden">
+      <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 min-w-0">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-8 pb-8 border-b border-[#E5E5E5] w-full max-w-full min-w-0">
           {/* Col 1 & 2: Brand Info */}
           <div className="col-span-2 space-y-3">
             <Logo size="sm" showTagline={false} />

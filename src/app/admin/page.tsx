@@ -319,7 +319,7 @@ export default function AdminPage() {
   // -------------------------------------------------------------
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center p-4 bg-slate-950 w-full max-w-full overflow-x-hidden">
         <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-2xl text-white">
           <div className="text-center mb-8">
             <Logo theme="dark" size="lg" className="justify-center mb-4" />
@@ -414,7 +414,7 @@ export default function AdminPage() {
   // AUTHENTICATED ADMIN DASHBOARD VIEW
   // -------------------------------------------------------------
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col w-full max-w-full overflow-x-hidden">
       {/* Toast Banner */}
       {toastMsg && (
         <div className="fixed top-4 right-4 z-50 bg-white text-black px-4 py-2.5 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2 animate-in slide-in-from-top-3">

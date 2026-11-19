@@ -68,21 +68,21 @@ export function NotificationsClient() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#0F0F0F]">
+    <div className="min-h-screen flex flex-col bg-white text-[#0F0F0F] w-full max-w-full overflow-x-hidden">
       <Navbar />
 
-      <main className="flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      <main className="flex-1 max-w-3xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-10 min-w-0">
         {/* Header */}
-        <div className="pb-4 mb-6 border-b border-[#E5E5E5] flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-[#F5F5F7] text-[#0F0F0F] flex items-center justify-center">
+        <div className="pb-4 mb-6 border-b border-[#E5E5E5] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="w-9 h-9 rounded-xl bg-[#F5F5F7] text-[#0F0F0F] flex items-center justify-center shrink-0">
               <Bell className="w-5 h-5 stroke-[1.75]" />
             </div>
-            <div>
-              <h1 className="font-bold text-lg sm:text-2xl text-[#0F0F0F] tracking-tight">
+            <div className="min-w-0">
+              <h1 className="font-bold text-lg sm:text-2xl text-[#0F0F0F] tracking-tight truncate">
                 {isNepali ? 'सूचना तथा गतिविधि' : 'Notifications'}
               </h1>
-              <p className="text-xs text-[#71717A] mt-0.5">
+              <p className="text-xs text-[#71717A] mt-0.5 truncate">
                 {isNepali
                   ? 'मूल्य परिवर्तन, एजेन्ट सन्देश तथा सूचीकरण अपडेट'
                   : 'Price drops, agent replies, and listing verifications'}
@@ -92,7 +92,7 @@ export function NotificationsClient() {
 
           <button
             onClick={handleMarkAllRead}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#E5E5E5] bg-white hover:bg-[#F5F5F7] text-xs font-semibold text-[#0F0F0F] transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#E5E5E5] bg-white hover:bg-[#F5F5F7] text-xs font-semibold text-[#0F0F0F] transition-colors shrink-0 self-start sm:self-auto"
           >
             <CheckCheck className="w-3.5 h-3.5 text-[#71717A]" />
             <span>{isNepali ? 'सबै पढेको चिन्ह लगाउनुहोस्' : 'Mark all as read'}</span>

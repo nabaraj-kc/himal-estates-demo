@@ -294,26 +294,26 @@ function ListingsContent() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white w-full max-w-full overflow-x-hidden">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-5 min-w-0">
         {/* Top Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E5E5E5] gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 sm:pb-4 border-b border-[#E5E5E5] gap-3 w-full max-w-full">
           <div>
-            <h1 className="font-extrabold text-2xl text-[#0F0F0F] tracking-tight">
+            <h1 className="font-extrabold text-xl sm:text-2xl text-[#0F0F0F] tracking-tight">
               {isNepali ? 'नेपालभरका सम्पत्ति सूचीहरू' : 'Properties & Businesses for Rent & Sale'}
             </h1>
-            <p className="text-xs text-[#71717A] mt-1">
+            <p className="text-xs text-[#71717A] mt-0.5">
               {filteredListings.length}{' '}
               {isNepali ? 'सम्पत्तिहरू भेटिए' : 'listings found'}
             </p>
           </div>
 
-          {/* View Toggles & Sort Options */}
-          <div className="flex items-center gap-2.5 self-end sm:self-auto">
-            {/* View Mode Toggle */}
-            <div className="flex items-center bg-[#F5F5F7] border border-[#E5E5E5] rounded-xl p-1">
+          {/* View Toggles & Sort Options (Stacked cleanly on mobile) */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-2.5 w-full sm:w-auto">
+            {/* View Mode Toggle: Desktop only */}
+            <div className="hidden sm:flex items-center bg-[#F5F5F7] border border-[#E5E5E5] rounded-xl p-1">
               <button
                 type="button"
                 onClick={() => setViewMode('grid')}
@@ -357,26 +357,29 @@ function ListingsContent() {
               </button>
             </div>
 
-            {/* Sort Dropdown */}
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="px-3 py-2 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-xs font-medium text-[#0F0F0F] focus:outline-none focus:border-[#0F0F0F]"
-            >
-              <option value="newest">{isNepali ? 'नयाँ पहिले' : 'Newest'}</option>
-              <option value="price-low">{isNepali ? 'मूल्य: कम देखि बढी' : 'Price: Low to High'}</option>
-              <option value="price-high">{isNepali ? 'मूल्य: बढी देखि कम' : 'Price: High to Low'}</option>
-              <option value="popular">{isNepali ? 'लोकप्रियता' : 'Most Popular'}</option>
-            </select>
+            {/* Sort & Filters side-by-side in 2-column grid on mobile */}
+            <div className="grid grid-cols-2 gap-2 w-full sm:flex sm:w-auto sm:items-center sm:gap-2.5">
+              {/* Sort Dropdown */}
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="w-full sm:w-auto px-3 py-2 rounded-xl bg-[#F5F5F7] border border-[#E5E5E5] text-xs font-medium text-[#0F0F0F] focus:outline-none focus:border-[#0F0F0F]"
+              >
+                <option value="newest">{isNepali ? 'नयाँ पहिले' : 'Newest'}</option>
+                <option value="price-low">{isNepali ? 'मूल्य: कम देखि बढी' : 'Price: Low-High'}</option>
+                <option value="price-high">{isNepali ? 'मूल्य: बढी देखि कम' : 'Price: High-Low'}</option>
+                <option value="popular">{isNepali ? 'लोकप्रियता' : 'Most Popular'}</option>
+              </select>
 
-            {/* Mobile Filter Sheet Trigger */}
-            <button
-              onClick={() => setMobileFilterOpen(true)}
-              className="lg:hidden flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#F5F5F7] text-[#0F0F0F] border border-[#E5E5E5] text-xs font-semibold"
-            >
-              <SlidersHorizontal className="w-4 h-4" />
-              <span>Filters {activeFiltersCount > 0 ? `(${activeFiltersCount})` : ''}</span>
-            </button>
+              {/* Mobile Filter Sheet Trigger */}
+              <button
+                onClick={() => setMobileFilterOpen(true)}
+                className="lg:hidden w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-[#F5F5F7] text-[#0F0F0F] border border-[#E5E5E5] text-xs font-semibold"
+              >
+                <SlidersHorizontal className="w-3.5 h-3.5" />
+                <span>Filters {activeFiltersCount > 0 ? `(${activeFiltersCount})` : ''}</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -425,7 +428,7 @@ function ListingsContent() {
         )}
 
         {/* Main Content Layout (Sidebar + Results) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mt-4 sm:mt-5 w-full max-w-full min-w-0">
           {/* Desktop Filter Sidebar (3 cols) */}
           <aside className="hidden lg:block lg:col-span-3 space-y-6">
             <div className="bg-white rounded-2xl p-4 border border-[#E5E5E5] sticky top-24">
@@ -450,12 +453,12 @@ function ListingsContent() {
           </aside>
 
           {/* Results Container (9 cols) */}
-          <section className="lg:col-span-9">
+          <section className="lg:col-span-9 w-full max-w-full min-w-0">
             {isLoading ? (
-              <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-2.5 sm:gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-2.5 sm:gap-4 w-full max-w-full min-w-0">
                 {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <div key={n} className="rounded-xl bg-white p-3 border border-[#E5E5E5] animate-pulse space-y-3">
-                    <div className="aspect-[16/10] bg-[#F5F5F7] rounded-lg"></div>
+                  <div key={n} className="rounded-xl bg-white p-3 border border-[#E5E5E5] animate-pulse space-y-3 min-w-0 w-full overflow-hidden">
+                    <div className="h-32 sm:h-44 bg-[#F5F5F7] rounded-lg w-full"></div>
                     <div className="h-4 bg-[#F5F5F7] rounded w-2/3"></div>
                     <div className="h-3 bg-[#F5F5F7] rounded w-1/2"></div>
                     <div className="h-5 bg-[#F5F5F7] rounded w-1/3"></div>
@@ -484,8 +487,8 @@ function ListingsContent() {
                 </button>
               </div>
             ) : viewMode === 'map' ? (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[680px]">
-                <div className="lg:col-span-6 overflow-y-auto pr-1 space-y-3 max-h-[680px] no-scrollbar">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[680px] w-full max-w-full min-w-0">
+                <div className="lg:col-span-6 overflow-y-auto pr-1 space-y-3 max-h-[680px] no-scrollbar min-w-0">
                   {filteredListings.map((listing) => (
                     <div
                       key={listing.id}
@@ -498,7 +501,7 @@ function ListingsContent() {
                     </div>
                   ))}
                 </div>
-                <div className="lg:col-span-6 h-full rounded-xl overflow-hidden border border-[#E5E5E5]">
+                <div className="lg:col-span-6 h-full rounded-xl overflow-hidden border border-[#E5E5E5] min-w-0">
                   <ListingMap
                     listings={filteredListings}
                     selectedListingId={selectedMapListingId}
@@ -507,7 +510,7 @@ function ListingsContent() {
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-2.5 sm:gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-2.5 sm:gap-4 w-full max-w-full min-w-0">
                 {filteredListings.map((listing) => (
                   <ListingCard key={listing.id} listing={listing} />
                 ))}

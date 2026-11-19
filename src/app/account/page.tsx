@@ -75,23 +75,23 @@ export default function AccountPage() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#0F0F0F]">
+    <div className="min-h-screen flex flex-col bg-white text-[#0F0F0F] w-full max-w-full overflow-x-hidden">
       <Navbar />
 
-      <main className="flex-1 max-w-2xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      <main className="flex-1 max-w-2xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-10 min-w-0">
         {/* User Profile Header */}
-        <div className="p-5 rounded-2xl border border-[#E5E5E5] bg-white shadow-sm mb-6">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3.5">
-              <div className="w-14 h-14 rounded-full bg-[#0F0F0F] text-white font-bold text-lg flex items-center justify-center flex-shrink-0">
+        <div className="p-4 sm:p-5 rounded-2xl border border-[#E5E5E5] bg-white shadow-sm mb-6 w-full max-w-full min-w-0">
+          <div className="flex items-center justify-between gap-3 min-w-0">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#0F0F0F] text-white font-bold text-base sm:text-lg flex items-center justify-center shrink-0">
                 {userName.slice(0, 2).toUpperCase()}
               </div>
               <div className="min-w-0">
-                <h1 className="font-bold text-base sm:text-lg text-[#0F0F0F] truncate">
+                <h1 className="font-bold text-sm sm:text-lg text-[#0F0F0F] truncate">
                   {userName}
                 </h1>
-                <p className="text-xs text-[#71717A] mt-0.5">{userPhone}</p>
-                <p className="text-[11px] text-[#71717A]">Kathmandu, Nepal • Verified Account</p>
+                <p className="text-xs text-[#71717A] mt-0.5 truncate">{userPhone}</p>
+                <p className="text-[10px] sm:text-[11px] text-[#71717A] truncate">Kathmandu, Nepal • Verified Account</p>
               </div>
             </div>
 

@@ -41,8 +41,8 @@ export function HotDeals({ filter = 'all' }: HotDealsProps) {
   if (deals.length === 0) return null;
 
   return (
-    <section className="py-4 sm:py-6 bg-white border-t border-[#E5E5E5]">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+    <section className="py-4 sm:py-6 bg-white border-t border-[#E5E5E5] w-full max-w-full overflow-x-hidden">
+      <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 min-w-0">
         {/* Crisp Section Header */}
         <div className="flex items-center justify-between mb-3 sm:mb-4 pb-2 border-b border-[#E5E5E5]">
           <h2 className="font-bold text-base sm:text-lg text-[#0F0F0F]">
@@ -59,7 +59,7 @@ export function HotDeals({ filter = 'all' }: HotDealsProps) {
         </div>
 
         {/* Dense 2-column mobile / 4-column desktop grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 w-full max-w-full min-w-0">
           {deals.map((listing) => (
             <ListingCard key={listing.id} listing={listing} />
           ))}

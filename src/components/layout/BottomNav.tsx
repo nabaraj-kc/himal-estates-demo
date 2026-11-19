@@ -70,7 +70,7 @@ export function BottomNav() {
   return (
     <nav
       aria-label="Hamrobazar Mobile Navigation"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-[#E5E5E5] h-16 px-1 flex items-center justify-around"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-[#E5E5E5] h-16 px-1 flex items-center justify-around w-full max-w-full overflow-hidden"
     >
       {navItems.map((item) => {
         const Icon = item.icon;

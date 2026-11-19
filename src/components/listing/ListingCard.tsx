@@ -57,9 +57,9 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
     const priceText = formatNPR(listing.price);
     if (listing.priceType === 'perMonth') {
       return (
-        <span className="font-bold text-sm sm:text-base text-[#0F0F0F]">
+        <span className="font-bold text-xs sm:text-base text-[#0F0F0F] truncate inline-block max-w-full">
           {priceText}
-          <span className="text-xs text-[#71717A] font-normal ml-1">
+          <span className="text-[10px] sm:text-xs text-[#71717A] font-normal ml-0.5 sm:ml-1">
             {isNepali ? '/महिना' : '/mo'}
           </span>
         </span>
@@ -67,16 +67,16 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
     }
     if (listing.priceType === 'perAana') {
       return (
-        <span className="font-bold text-sm sm:text-base text-[#0F0F0F]">
+        <span className="font-bold text-xs sm:text-base text-[#0F0F0F] truncate inline-block max-w-full">
           {priceText}
-          <span className="text-xs text-[#71717A] font-normal ml-1">
+          <span className="text-[10px] sm:text-xs text-[#71717A] font-normal ml-0.5 sm:ml-1">
             {isNepali ? '/आना' : '/aana'}
           </span>
         </span>
       );
     }
     return (
-      <span className="font-bold text-sm sm:text-base text-[#0F0F0F]">
+      <span className="font-bold text-xs sm:text-base text-[#0F0F0F] truncate inline-block max-w-full">
         {priceText}
       </span>
     );
@@ -117,14 +117,14 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
   return (
     <article
       onClick={handleCardClick}
-      className="group relative bg-white rounded-lg border border-[#E5E5E5] overflow-hidden hover:border-[#0F0F0F] transition-all duration-200 flex flex-col h-full cursor-pointer"
+      className="group relative bg-white rounded-lg border border-[#E5E5E5] overflow-hidden hover:border-[#0F0F0F] transition-all duration-200 flex flex-col h-full cursor-pointer w-full max-w-full min-w-0"
     >
       {/* Photo Container */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#F5F5F7]">
+      <div className="relative w-full h-32 sm:h-44 overflow-hidden bg-[#F5F5F7]">
         <img
           src={imgError ? 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80' : primaryImage}
           alt={listing.title}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-32 sm:h-44 object-cover transition-transform duration-300 group-hover:scale-105"
           onError={() => setImgError(true)}
           loading={priority ? 'eager' : 'lazy'}
         />
@@ -147,19 +147,19 @@ export function ListingCard({ listing, priority = false }: ListingCardProps) {
       </div>
 
       {/* Content: Photo → Bold Price → Short Title → Location & Key Spec */}
-      <div className="p-2.5 sm:p-3 flex flex-col flex-1 justify-between gap-1.5">
-        <div>
+      <div className="p-2 sm:p-3 flex flex-col flex-1 justify-between gap-1 w-full min-w-0 overflow-hidden">
+        <div className="w-full min-w-0">
           {/* Bold Price */}
-          <div className="leading-tight">{renderPrice()}</div>
+          <div className="leading-tight truncate w-full min-w-0">{renderPrice()}</div>
 
           {/* Title: concise max 2 lines with line-clamp-2 */}
-          <h3 className="font-medium text-xs sm:text-sm text-[#0F0F0F] line-clamp-2 leading-snug mt-1 transition-colors">
+          <h3 className="font-medium text-xs sm:text-sm text-[#0F0F0F] line-clamp-2 leading-snug mt-1 transition-colors break-words">
             {isNepali && listing.titleNe ? listing.titleNe : listing.title}
           </h3>
         </div>
 
         {/* Clean inline metadata separated by subtle dot • */}
-        <div className="text-[11px] text-[#71717A] truncate mt-1 pt-1.5 border-t border-[#E5E5E5]">
+        <div className="text-[10px] sm:text-[11px] text-[#71717A] truncate mt-1 pt-1.5 border-t border-[#E5E5E5] w-full min-w-0">
           {metaParts.join(' • ')}
         </div>
       </div>
