@@ -523,8 +523,8 @@ function ListingsContent() {
                 </div>
               </div>
             ) : (
-              // Grid View
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-7">
+              // Grid View: Dense 2-col on mobile, 3-col on desktop
+              <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-2.5 sm:gap-4">
                 {filteredListings.map((listing) => (
                   <ListingCard key={listing.id} listing={listing} />
                 ))}
@@ -535,7 +535,6 @@ function ListingsContent() {
       </main>
 
       <Footer />
-      <ChatWidget />
     </div>
   );
 }

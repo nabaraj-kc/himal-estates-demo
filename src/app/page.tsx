@@ -1,49 +1,40 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
-import { Hero } from '@/components/home/Hero';
-import { CategoryGrid } from '@/components/home/CategoryGrid';
+import { HomeTopBar } from '@/components/home/HomeTopBar';
 import { FeaturedListings } from '@/components/home/FeaturedListings';
 import { HotDeals } from '@/components/home/HotDeals';
-import { HowItWorks } from '@/components/home/HowItWorks';
-import { TrustSection } from '@/components/home/TrustSection';
-import { ListPropertyCTA } from '@/components/home/ListPropertyCTA';
-import { ChatWidget } from '@/components/chat/ChatWidget';
+import { CategoryGrid } from '@/components/home/CategoryGrid';
 
 export default function HomePage() {
+  const [activeFilter, setActiveFilter] = useState('all');
+
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50/30">
+    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
+      {/* 1. Compact Sticky Top Header with Search */}
       <Navbar />
 
+      {/* 2. Top Horizontal Scrollable Filter Bar (All, For Rent, For Sale, Land, Businesses) */}
+      <HomeTopBar
+        activeFilter={activeFilter}
+        onFilterChange={setActiveFilter}
+      />
+
       <main className="flex-1">
-        {/* 1. Hero with multi-tab search & trust metrics */}
-        <Hero />
+        {/* 3. Featured / Trending Properties (Dense 2-col mobile / 4-col desktop grid) */}
+        <FeaturedListings filter={activeFilter} />
 
-        {/* 2. Visual Category Tiles */}
+        {/* 4. Hot Deals / Latest Uploads (Dense 2-col mobile / 4-col desktop grid) */}
+        <HotDeals filter={activeFilter} />
+
+        {/* 5. Categories BELOW Properties (Flat, compact icon-and-label grid) */}
         <CategoryGrid />
-
-        {/* 3. Featured Properties Handpicked by Experts */}
-        <FeaturedListings />
-
-        {/* 4. Hot Deals & Price Drops */}
-        <HotDeals />
-
-        {/* 5. How It Works (3 Steps for Verified Closing) */}
-        <HowItWorks />
-
-        {/* 6. Buyer-Focused Due Diligence & Nepali Real Estate Trust Signals */}
-        <TrustSection />
-
-        {/* 7. List Your Property Call To Action */}
-        <ListPropertyCTA />
       </main>
 
+      {/* 6. Footer */}
       <Footer />
-
-      {/* Floating Chat & Call Widget */}
-      <ChatWidget />
     </div>
   );
 }

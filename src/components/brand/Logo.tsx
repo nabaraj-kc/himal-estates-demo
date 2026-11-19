@@ -115,11 +115,10 @@ export function Logo({
               Himal
             </span>
             <span
-              className={`font-display font-medium tracking-tight ${textSizes[size]} text-teal-600 dark:text-teal-400`}
+              className={`font-display font-semibold tracking-tight ${textSizes[size]} ${textColor}`}
             >
               Estates
             </span>
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-orange-600 mb-2"></span>
           </div>
 
           {showTagline && variant === 'full' && (

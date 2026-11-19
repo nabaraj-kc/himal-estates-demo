@@ -1,6 +1,8 @@
-import { Listing, Inquiry, Deal } from '@/types';
+import { Listing, Inquiry, Deal, Conversation, InboxMessage } from '@/types';
 import { mockListings, mockCategories } from '@/data/mock-listings';
 import { mockInquiries, mockDeals, mockSellerSubmissions, SellerSubmission } from '@/data/mock-admin-data';
+import { mockConversations } from '@/data/mock-inbox-data';
+import { brand } from '@/config/brand';
 
 const STORAGE_KEYS = {
   LISTINGS: 'himal_estates_listings_v1',
@@ -8,6 +10,7 @@ const STORAGE_KEYS = {
   DEALS: 'himal_estates_deals_v1',
   SUBMISSIONS: 'himal_estates_submissions_v1',
   FAVORITES: 'himal_estates_favorites_v1',
+  CONVERSATIONS: 'himal_estates_conversations_v1',
   LANGUAGE: 'himal_estates_language_v1',
 } as const;
 
@@ -306,6 +309,117 @@ export function toggleFavoriteId(id: string): boolean {
 }
 
 // -------------------------------------------------------------
+// CONVERSATIONS / INBOX SERVICE
+// -------------------------------------------------------------
+
+export function getConversations(): Conversation[] {
+  return getItem<Conversation[]>(STORAGE_KEYS.CONVERSATIONS, mockConversations);
+}
+
+export function getConversationById(id: string): Conversation | undefined {
+  const convs = getConversations();
+  return convs.find((c) => c.id === id);
+}
+
+export function getTotalUnreadCount(): number {
+  const convs = getConversations();
+  return convs.reduce((sum, c) => sum + (c.unreadCount || 0), 0);
+}
+
+export function getOrCreateConversationForListing(listingId: string): Conversation {
+  const convs = getConversations();
+  const existing = convs.find((c) => c.listingId === listingId);
+  if (existing) return existing;
+
+  const listing = getListingById(listingId);
+  const newConv: Conversation = {
+    id: `conv-${listingId}-${Date.now()}`,
+    listingId: listing?.id || listingId,
+    listingTitle: listing?.title || 'Property Inquiry',
+    listingPrice: listing?.price || 0,
+    listingPriceType: listing?.priceType || 'total',
+    listingImage:
+      listing?.images?.[0]?.url ||
+      'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
+    listingLocation: listing?.location
+      ? `${listing.location.tole ? `${listing.location.tole}, ` : ''}${listing.location.city || listing.location.district}`
+      : 'Kathmandu Valley',
+    listingSlug: listing?.slug || listing?.id || listingId,
+    agentName: 'Suman Shrestha',
+    agentPhone: brand.mobile,
+    agentRole: 'Assigned Senior Broker',
+    unreadCount: 0,
+    updatedAt: new Date().toISOString(),
+    messages: [
+      {
+        id: `m-init-${Date.now()}`,
+        sender: 'agent',
+        text: `Namaste! I am your assigned advisor for "${listing?.title || 'this property'}". Feel free to ask about legal verification, road width, site visit timing, or pricing!`,
+        timestamp: new Date().toISOString(),
+      },
+    ],
+  };
+
+  const updated = [newConv, ...convs];
+  setItem(STORAGE_KEYS.CONVERSATIONS, updated);
+  if (isClient()) {
+    window.dispatchEvent(new CustomEvent('himal_conversations_changed'));
+  }
+  return newConv;
+}
+
+export function sendMessageToConversation(
+  conversationId: string,
+  text: string,
+  sender: 'client' | 'agent' = 'client'
+): Conversation | undefined {
+  const convs = getConversations();
+  const index = convs.findIndex((c) => c.id === conversationId);
+  if (index === -1) return undefined;
+
+  const newMsg: InboxMessage = {
+    id: `m-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
+    sender,
+    text,
+    timestamp: new Date().toISOString(),
+  };
+
+  const current = convs[index];
+  const updatedMessages = [...current.messages, newMsg];
+  const updatedConv: Conversation = {
+    ...current,
+    messages: updatedMessages,
+    unreadCount: sender === 'agent' ? (current.unreadCount || 0) + 1 : 0,
+    updatedAt: new Date().toISOString(),
+  };
+
+  // Move active conversation to top of list
+  const nextConvs = [updatedConv, ...convs.filter((c) => c.id !== conversationId)];
+  setItem(STORAGE_KEYS.CONVERSATIONS, nextConvs);
+  if (isClient()) {
+    window.dispatchEvent(new CustomEvent('himal_conversations_changed'));
+  }
+  return updatedConv;
+}
+
+export function markConversationRead(conversationId: string): void {
+  const convs = getConversations();
+  const index = convs.findIndex((c) => c.id === conversationId);
+  if (index === -1) return;
+
+  if (convs[index].unreadCount > 0) {
+    convs[index] = {
+      ...convs[index],
+      unreadCount: 0,
+    };
+    setItem(STORAGE_KEYS.CONVERSATIONS, convs);
+    if (isClient()) {
+      window.dispatchEvent(new CustomEvent('himal_conversations_changed'));
+    }
+  }
+}
+
+// -------------------------------------------------------------
 // RESET ALL DEMO DATA
 // -------------------------------------------------------------
 
@@ -316,5 +430,7 @@ export function resetDemoData(): void {
   localStorage.setItem(STORAGE_KEYS.DEALS, JSON.stringify(mockDeals));
   localStorage.setItem(STORAGE_KEYS.SUBMISSIONS, JSON.stringify(mockSellerSubmissions));
   localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify(['list-001', 'list-006']));
+  localStorage.setItem(STORAGE_KEYS.CONVERSATIONS, JSON.stringify(mockConversations));
   window.dispatchEvent(new CustomEvent('himal_data_reset'));
+  window.dispatchEvent(new CustomEvent('himal_conversations_changed'));
 }

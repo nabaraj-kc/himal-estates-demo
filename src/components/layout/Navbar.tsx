@@ -2,236 +2,169 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { Logo } from '@/components/brand/Logo';
 import { brand } from '@/config/brand';
 import { useLanguage } from '@/context/LanguageContext';
-import { getFavoriteIds } from '@/lib/storage';
+import { getFavoriteIds, getTotalUnreadCount } from '@/lib/storage';
 import {
-  Heart,
-  PlusCircle,
-  Menu,
-  X,
-  Phone,
-  ShieldCheck,
   Search,
-  Globe,
+  Heart,
   MessageSquare,
+  Plus,
+  Globe,
+  Phone,
 } from 'lucide-react';
 
 export function Navbar() {
+  const router = useRouter();
   const pathname = usePathname();
-  const { language, toggleLanguage, t, isNepali } = useLanguage();
+  const { language, toggleLanguage, isNepali } = useLanguage();
   const [favoriteCount, setFavoriteCount] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  // Sync favorites count
   useEffect(() => {
-    const updateFavs = () => {
+    const updateCounts = () => {
       setFavoriteCount(getFavoriteIds().length);
+      setUnreadCount(getTotalUnreadCount());
     };
-    updateFavs();
+    updateCounts();
 
-    window.addEventListener('himal_favorites_changed', updateFavs);
-    window.addEventListener('storage', updateFavs);
+    window.addEventListener('himal_favorites_changed', updateCounts);
+    window.addEventListener('himal_conversations_changed', updateCounts);
+    window.addEventListener('storage', updateCounts);
+
     return () => {
-      window.removeEventListener('himal_favorites_changed', updateFavs);
-      window.removeEventListener('storage', updateFavs);
+      window.removeEventListener('himal_favorites_changed', updateCounts);
+      window.removeEventListener('himal_conversations_changed', updateCounts);
+      window.removeEventListener('storage', updateCounts);
     };
   }, []);
 
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
-
-  const navLinks = [
-    { href: '/', label: t('nav.home', 'Home') },
-    { href: '/listings?type=rent', label: isNepali ? 'भाडामा' : 'For Rent' },
-    { href: '/listings?type=sale', label: isNepali ? 'बिक्रीमा' : 'For Sale' },
-    { href: '/listings?category=land', label: isNepali ? 'जमिन/घडेरी' : 'Land' },
-    { href: '/listings?category=business', label: isNepali ? 'व्यवसाय' : 'Businesses' },
-    { href: '/about', label: t('nav.about', 'About') },
-    { href: '/contact', label: t('nav.contact', 'Contact') },
-  ];
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) {
+      router.push('/listings');
+      return;
+    }
+    router.push(`/listings?location=${encodeURIComponent(searchQuery.trim())}`);
+  };
 
   return (
-    <header
-      className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 dark:border-slate-800'
-          : 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border-b border-slate-100 dark:border-slate-800'
-      }`}
-    >
-      {/* Top micro bar for contact info & inquiry hotline */}
-      <div className="bg-slate-900 text-slate-300 text-xs py-1.5 px-4 hidden sm:block">
+    <header className="sticky top-0 z-40 w-full bg-white border-b border-gray-200">
+      {/* Top micro bar for telephone helpline (desktop only) */}
+      <div className="bg-gray-50 border-b border-gray-100 text-[11px] text-gray-600 py-1 px-4 hidden md:block">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5 text-teal-400 font-medium">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              {isNepali ? 'प्रत्येक सूची स्थलगत र कानुनी रूपमा प्रमाणित' : 'Every Listing Verified • Kathmandu, Lalitpur, Pokhara'}
-            </span>
-            <a
-              href={`tel:${brand.phone}`}
-              className="hover:text-white transition-colors flex items-center gap-1"
-            >
-              <Phone className="w-3 h-3 text-teal-400" />
-              <span>Tel: {brand.phone}</span>
-            </a>
-            <span className="text-slate-600">|</span>
-            <a
-              href={`tel:${brand.mobile}`}
-              className="hover:text-white transition-colors flex items-center gap-1"
-            >
-              <span>Mob: {brand.mobile}</span>
-            </a>
-          </div>
-
           <div className="flex items-center gap-4">
-            <span className="text-slate-400 text-[11px]">Kathmandu HQ: {brand.address}</span>
-            <span className="text-slate-600">|</span>
-            <a
-              href={`https://wa.me/${brand.whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1 font-medium"
-            >
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span>WhatsApp Helpline</span>
+            <span className="font-medium text-gray-800">
+              {isNepali ? 'नेपालको प्रमाणित घरजग्गा बजार' : "Nepal's Property & Business Marketplace"}
+            </span>
+            <span className="text-gray-300">•</span>
+            <a href={`tel:${brand.phone}`} className="hover:text-teal-800 transition-colors flex items-center gap-1">
+              <Phone className="w-3 h-3 text-teal-700" />
+              <span>{brand.phone}</span>
             </a>
+            <span className="text-gray-300">•</span>
+            <span>{brand.address}</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link href="/admin" className="text-gray-500 hover:text-teal-800 transition-colors">
+              {isNepali ? 'ब्रोकर लगइन' : 'Broker / Staff Portal'}
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Main navigation bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Brand Logo */}
-          <Logo size="md" />
+      {/* Main Bar */}
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-3 h-14 sm:h-16">
+          {/* Logo (plain dark text, no extra tagline clutter) */}
+          <div className="flex-shrink-0">
+            <Logo size="sm" showTagline={false} />
+          </div>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href.split('?')[0]));
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'text-teal-700 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/40 font-semibold'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
+          {/* Hamrobazar-style Search Input (center) */}
+          <form
+            onSubmit={handleSearchSubmit}
+            className="flex-1 max-w-xl mx-2 relative flex items-center"
+          >
+            <div className="relative w-full">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={
+                  isNepali
+                    ? 'काठमाडौं, ललितपुर वा पोखरामा फ्ल्याट, जग्गा खोज्नुहोस्...'
+                    : 'Search flats, land, houses in Kathmandu, Lalitpur, Pokhara...'
+                }
+                className="w-full pl-9 pr-9 sm:pr-20 py-2 text-xs sm:text-sm bg-gray-50 border border-gray-200 rounded-lg text-[#111827] placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-teal-800 focus:bg-white transition-all"
+              />
+              <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <button
+                type="submit"
+                className="hidden sm:inline-block absolute right-1.5 top-1/2 -translate-y-1/2 px-2.5 py-1 rounded bg-teal-800 hover:bg-teal-900 text-white text-xs font-semibold"
+              >
+                {isNepali ? 'खोज्नुहोस्' : 'Search'}
+              </button>
+            </div>
+          </form>
 
-          {/* Action CTAs */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          {/* Right Action Icons (desktop & mobile clean actions) */}
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
             {/* Language Switcher */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 transition-colors"
+              className="flex items-center gap-1 px-2 py-1 rounded text-xs font-medium text-gray-700 hover:bg-gray-100 transition-colors"
               title="Toggle English / नेपाली"
               aria-label="Toggle language"
             >
-              <Globe className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
-              <span>{language === 'en' ? 'नेपाली' : 'English'}</span>
+              <Globe className="w-3.5 h-3.5 text-gray-600" />
+              <span className="hidden sm:inline">{language === 'en' ? 'नेपाली' : 'EN'}</span>
             </button>
 
-            {/* Saved Properties Heart */}
+            {/* Saved Properties */}
             <Link
               href="/saved"
-              className="relative p-2 rounded-full text-slate-600 dark:text-slate-300 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-slate-800 transition-colors"
+              className="relative p-2 rounded-lg text-gray-700 hover:text-rose-600 hover:bg-gray-50 transition-colors"
               title="Saved Properties"
               aria-label="Saved properties"
             >
-              <Heart className="w-5 h-5" />
+              <Heart className="w-5 h-5 stroke-[1.8]" />
               {favoriteCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-rose-600 text-white text-[10px] font-bold flex items-center justify-center animate-in zoom-in">
+                <span className="absolute 1 -top-0.5 -right-0.5 min-w-4 h-4 px-1 rounded-full bg-rose-600 text-white text-[10px] font-bold flex items-center justify-center leading-none">
                   {favoriteCount}
                 </span>
               )}
             </Link>
 
-            {/* List Property Primary Button */}
+            {/* Client-Agent Inbox */}
             <Link
-              href="/list-property"
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-teal-700 hover:bg-teal-800 text-white text-sm font-medium shadow-sm shadow-teal-700/20 hover:shadow-md transition-all active:scale-95"
+              href="/inbox"
+              className="relative p-2 rounded-lg text-gray-700 hover:text-teal-800 hover:bg-gray-50 transition-colors"
+              title="Client-Agent Inbox"
+              aria-label="Inbox"
             >
-              <PlusCircle className="w-4 h-4" />
-              <span>{isNepali ? 'सम्पत्ति पोस्ट गर्नुहोस्' : 'List Property'}</span>
+              <MessageSquare className="w-5 h-5 stroke-[1.8]" />
+              {unreadCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 min-w-4 h-4 px-1 rounded-full bg-teal-800 text-white text-[10px] font-bold flex items-center justify-center leading-none">
+                  {unreadCount}
+                </span>
+              )}
             </Link>
 
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
-              aria-label="Toggle mobile menu"
+            {/* Post Listing CTA (Prominent on desktop, also in bottom nav for mobile) */}
+            <Link
+              href="/list-property"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-teal-800 hover:bg-teal-900 text-white text-xs font-semibold shadow-sm transition-all active:scale-95"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+              <Plus className="w-4 h-4 stroke-[2.5]" />
+              <span>{isNepali ? 'सम्पत्ति पोस्ट' : '+ Post Ad'}</span>
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* Mobile Dropdown Menu Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden border-b border-slate-200 bg-white dark:bg-slate-900 px-4 pt-2 pb-6 space-y-3 animate-in slide-in-from-top-4 duration-200">
-          <div className="grid grid-cols-2 gap-2 pt-2">
-            <Link
-              href="/list-property"
-              className="col-span-2 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-teal-700 text-white font-medium text-sm shadow-sm"
-            >
-              <PlusCircle className="w-4 h-4" />
-              <span>{isNepali ? 'सम्पत्ति पोस्ट गर्नुहोस्' : 'List Your Property (Free)'}</span>
-            </Link>
-
-            <a
-              href={`tel:${brand.phone}`}
-              className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-medium"
-            >
-              <Phone className="w-4 h-4 text-teal-600" />
-              <span>Call Helpline</span>
-            </a>
-
-            <a
-              href={`https://wa.me/${brand.whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-medium"
-            >
-              <MessageSquare className="w-4 h-4" />
-              <span>WhatsApp</span>
-            </a>
-          </div>
-
-          <div className="border-t border-slate-100 dark:border-slate-800 pt-2 space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
     </header>
   );
 }

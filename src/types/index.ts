@@ -235,6 +235,30 @@ export interface Message {
   repliedAt?: string;
 }
 
+export interface InboxMessage {
+  id: string;
+  sender: 'client' | 'agent';
+  text: string;
+  timestamp: string;
+}
+
+export interface Conversation {
+  id: string;
+  listingId: string;
+  listingTitle: string;
+  listingPrice: number;
+  listingPriceType?: PriceType;
+  listingImage: string;
+  listingLocation: string;
+  listingSlug: string;
+  agentName: string;
+  agentPhone: string;
+  agentRole: string;
+  messages: InboxMessage[];
+  unreadCount: number;
+  updatedAt: string;
+}
+
 // ------------------------------------------------------------------
 // DEAL / COMMISSION
 // ------------------------------------------------------------------

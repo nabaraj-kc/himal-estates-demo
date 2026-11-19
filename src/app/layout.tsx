@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Plus_Jakarta_Sans, Noto_Sans_Devanagari } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
+import { BottomNav } from '@/components/layout/BottomNav';
 import { brand } from '@/config/brand';
 
 const inter = Inter({
@@ -62,8 +63,11 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${plusJakartaSans.variable} ${notoSansDevanagari.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-slate-50/50 text-slate-900 selection:bg-teal-600 selection:text-white">
-        <LanguageProvider>{children}</LanguageProvider>
+      <body className="min-h-full flex flex-col font-sans bg-white text-[#111827] overflow-x-hidden selection:bg-teal-700 selection:text-white pb-20 md:pb-0">
+        <LanguageProvider>
+          {children}
+          <BottomNav />
+        </LanguageProvider>
       </body>
     </html>
   );

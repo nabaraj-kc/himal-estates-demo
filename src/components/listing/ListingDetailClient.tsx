@@ -538,24 +538,22 @@ export function ListingDetailClient({ slug }: { slug: string }) {
                 </div>
               </div>
 
-              {/* Direct Actions */}
-              <div className="py-5 space-y-3">
-                <button
-                  onClick={() => setIsCallModalOpen(true)}
-                  className="w-full py-3.5 px-4 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-semibold text-sm shadow-md shadow-teal-700/20 flex items-center justify-center gap-2 transition-all active:scale-95"
-                >
-                  <Phone className="w-4 h-4" />
-                  <span>{isNepali ? 'एजेन्टलाई कल गर्नुहोस्' : 'Call Agent (Instant)'}</span>
-                </button>
-
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md shadow-emerald-700/20 flex items-center justify-center gap-2 transition-all"
+              {/* Direct Actions: Message Agent & Call Agent */}
+              <div className="py-4 space-y-2.5">
+                <Link
+                  href={`/inbox?listingId=${listing.id}`}
+                  className="w-full py-3 px-4 rounded-lg bg-teal-800 hover:bg-teal-900 text-white font-semibold text-sm shadow-sm flex items-center justify-center gap-2 transition-all active:scale-95"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  <span>{isNepali ? 'व्हाट्सएपमा च्याट गर्नुहोस्' : 'Chat on WhatsApp'}</span>
+                  <span>{isNepali ? 'एजेन्टलाई सन्देश पठाउनुहोस्' : 'Message Agent'}</span>
+                </Link>
+
+                <a
+                  href={`tel:${brand.mobile}`}
+                  className="w-full py-3 px-4 rounded-lg border border-gray-300 bg-white hover:bg-gray-50 text-[#111827] font-semibold text-sm flex items-center justify-center gap-2 transition-all active:scale-95"
+                >
+                  <Phone className="w-4 h-4 text-teal-800" />
+                  <span>{isNepali ? 'एजेन्टलाई सिधै कल गर्नुहोस्' : 'Call Agent'}</span>
                 </a>
               </div>
 
@@ -628,13 +626,13 @@ export function ListingDetailClient({ slug }: { slug: string }) {
           </div>
         </div>
 
-        {/* Similar Listings Carousel / Grid */}
+        {/* Similar Listings Grid (Dense Hamrobazar layout) */}
         {similarListings.length > 0 && (
-          <div className="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800">
-            <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-900 dark:text-white mb-6">
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <h3 className="font-bold text-base sm:text-lg text-[#111827] mb-4">
               {isNepali ? 'सम्बन्धित अन्य सम्पत्तिहरू' : 'Similar Properties in Nepal'}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
               {similarListings.map((sim) => (
                 <ListingCard key={sim.id} listing={sim} />
               ))}
@@ -644,14 +642,6 @@ export function ListingDetailClient({ slug }: { slug: string }) {
       </main>
 
       <Footer />
-      <ChatWidget />
-
-      {/* Call Simulator Modal */}
-      <CallModal
-        isOpen={isCallModalOpen}
-        onClose={() => setIsCallModalOpen(false)}
-        propertyTitle={listing.title}
-      />
     </div>
   );
 }
