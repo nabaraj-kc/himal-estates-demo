@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
+import React, { useEffect, useState, useId } from 'react';
 import { Listing } from '@/types';
 import { formatNPRShort } from '@/lib/utils';
-import { MapPin, Navigation } from 'lucide-react';
+import { Navigation } from 'lucide-react';
 
 interface ListingMapProps {
   listings: Listing[];
@@ -24,7 +23,8 @@ export function ListingMap({
   onSelectListing,
 }: ListingMapProps) {
   const [mounted, setMounted] = useState(false);
-  const [mapContainerId] = useState(`map-${Math.random().toString(36).substring(2, 9)}`);
+  const rawId = useId();
+  const mapContainerId = `map-${rawId.replace(/[^a-zA-Z0-9_-]/g, '')}`;
 
   useEffect(() => {
     setMounted(true);
